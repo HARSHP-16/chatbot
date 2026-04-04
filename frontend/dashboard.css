@@ -1,50 +1,38 @@
 :root {
-    /* Light Mode College-Tech Theme Colors */
-    --bg-base: #f4f7fb;
-    --bg-gradient: radial-gradient(circle at 10% 20%, #ffffff 0%, #ebf0f7 100%);
+    /* Inherit from style.css to match theme precisely */
+    --bg-base: var(--bg-color, #fcfcfd);
     
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(255, 255, 255, 1);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    --glass-bg: rgba(255, 255, 255, 0.82);
+    --glass-border: rgba(255, 255, 255, 0.9);
+    --glass-shadow: var(--shadow-subtle, 0 8px 32px 0 rgba(31, 38, 135, 0.07));
 
-    --primary: #6c5ce7;
-    --primary-hover: #5a4bcf;
-    --secondary: #00cec9;
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary: #0ea5e9;
+    --tertiary: #c026d3;
     
-    /* Vibrant Accents */
-    --neon-blue: #0984e3;
-    --neon-pink: #d63031;
-    --neon-purple: #a29bfe;
+    /* Vibrant Accents remap */
+    --neon-blue: #0ea5e9;
+    --neon-pink: #c026d3;
+    --neon-purple: #4f46e5;
 
-    --text-main: #2b2e4a;
-    --text-muted: #6e7687;
+    --text-main: #0f172a;
+    --text-muted: #526075;
 
     --sidebar-width: 260px;
     --navbar-height: 80px;
 
-    /* Card Status Colors */
-    --status-purple: rgba(108, 92, 231, 0.15);
-    --status-blue: rgba(0, 206, 201, 0.15);
-    --status-pink: rgba(214, 48, 49, 0.15);
-    --status-green: rgba(38, 222, 129, 0.15);
-    --status-red: rgba(255, 71, 87, 0.15);
-    --status-orange: rgba(255, 159, 67, 0.15);
+    /* Card Status Colors mapped to new palette */
+    --status-purple: rgba(79, 70, 229, 0.15);
+    --status-blue: rgba(14, 165, 233, 0.15);
+    --status-pink: rgba(192, 38, 211, 0.15);
+    --status-green: rgba(45, 212, 191, 0.15);
+    --status-red: rgba(239, 68, 68, 0.15);
+    --status-orange: rgba(245, 158, 11, 0.15);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Base styles are inherited from style.css (fonts, body background, blobs) */
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--bg-base);
-    background-image: var(--bg-gradient);
-    color: var(--text-main);
-    overflow-x: hidden;
-    min-height: 100vh;
-}
 
 /* Glassmorphism utility */
 .glass-card {
