@@ -1,11 +1,4 @@
-# Flask framework (if needed for API exposure later by teammates)
 flask
-
-# Used for reading API keys securely from .env
-python-dotenv
-
-# Google Gemini API SDK
-google-generativeai
-
-# For cross-origin requests
 flask-cors
+python-dotenv
+google-genai
