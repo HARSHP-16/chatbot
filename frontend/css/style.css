@@ -125,6 +125,54 @@ h3 { font-size: 1.35rem; letter-spacing: -0.015em; }
     background: #ffffff; transform: translateY(-1px);
 }
 
+.password-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pwd-toggle {
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: #ffffff;
+    color: var(--text-muted);
+    border-radius: 10px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-snappy);
+}
+
+.pwd-toggle:hover {
+    color: var(--primary);
+    border-color: rgba(29, 78, 216, 0.35);
+}
+
+.form-error {
+    color: #dc2626;
+    display: none;
+    margin-top: 0.4rem;
+}
+
+.form-success {
+    color: #16a34a;
+    display: none;
+    margin-top: 0.4rem;
+}
+
+.demo-credentials {
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px dashed rgba(29, 78, 216, 0.25);
+    border-radius: 12px;
+    background: rgba(29, 78, 216, 0.04);
+}
+
+.demo-credentials p {
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
 /* Navbar */
 .navbar {
     position: fixed; top: 0; left: 0; width: 100%; z-index: 100;

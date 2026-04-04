@@ -28,6 +28,7 @@ def login():
 
     email    = data.get("email", "").strip()
     password = data.get("password", "").strip()
+    role     = data.get("role", "").strip().lower()
 
     if not email or not password:
         return jsonify({"error": "Email and password are required"}), 400
@@ -36,6 +37,9 @@ def login():
 
     if not user or user["password"] != password:
         return jsonify({"error": "Invalid email or password"}), 401
+
+    if role and role in ("student", "faculty", "admin") and user["role"] != role:
+        return jsonify({"error": f"Role mismatch. This account is registered as {user['role']}."}), 401
 
     return jsonify({
         "message": "Login successful",

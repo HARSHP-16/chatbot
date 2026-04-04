@@ -1,0 +1,74 @@
+[
+  {
+    "source": "temp-dept-timetable-2026",
+    "category": "timetable",
+    "section": "Information Technology (IT) - Monday",
+    "content": "IT Monday timetable: 09:00-10:00 Data Structures, 10:00-11:00 DBMS, 11:15-12:15 Computer Networks, 01:00-02:00 Software Engineering, 02:00-04:00 DBMS Lab.",
+    "keywords": ["it", "information technology", "monday", "timetable", "dbms", "lab"],
+    "chunk_id": 1
+  },
+  {
+    "source": "temp-dept-timetable-2026",
+    "category": "timetable",
+    "section": "Information Technology (IT) - Tuesday",
+    "content": "IT Tuesday timetable: 09:00-10:00 Operating Systems, 10:00-11:00 Theory of Computation, 11:15-12:15 Aptitude, 01:00-02:00 AI Basics, 02:00-04:00 Web Technology Lab.",
+    "keywords": ["it", "tuesday", "operating systems", "ai", "web technology", "lab"],
+    "chunk_id": 2
+  },
+  {
+    "source": "temp-dept-timetable-2026",
+    "category": "timetable",
+    "section": "Computer Science (CS) - Monday",
+    "content": "CS Monday timetable: 09:00-10:00 Algorithms, 10:00-11:00 Discrete Mathematics, 11:15-12:15 Compiler Design, 01:00-02:00 Machine Learning, 02:00-04:00 Algorithms Lab.",
+    "keywords": ["cs", "computer science", "monday", "algorithms", "compiler", "lab"],
+    "chunk_id": 3
+  },
+  {
+    "source": "temp-dept-timetable-2026",
+    "category": "timetable",
+    "section": "Computer Science (CS) - Tuesday",
+    "content": "CS Tuesday timetable: 09:00-10:00 Computer Architecture, 10:00-11:00 Database Systems, 11:15-12:15 Probability and Statistics, 01:00-02:00 Cloud Computing, 02:00-04:00 ML Lab.",
+    "keywords": ["cs", "tuesday", "computer architecture", "database", "cloud", "ml lab"],
+    "chunk_id": 4
+  },
+  {
+    "source": "temp-dept-timetable-2026",
+    "category": "timetable",
+    "section": "Electronics and Telecommunication (ENTC) - Monday",
+    "content": "ENTC Monday timetable: 09:00-10:00 Signals and Systems, 10:00-11:00 Analog Communication, 11:15-12:15 Network Theory, 01:00-02:00 Digital Electronics, 02:00-04:00 Communication Lab.",
+    "keywords": ["entc", "electronics", "telecommunication", "monday", "signals", "communication lab"],
+    "chunk_id": 5
+  },
+  {
+    "source": "temp-dept-timetable-2026",
+    "category": "timetable",
+    "section": "Electronics and Telecommunication (ENTC) - Tuesday",
+    "content": "ENTC Tuesday timetable: 09:00-10:00 Microcontrollers, 10:00-11:00 Control Systems, 11:15-12:15 Electromagnetics, 01:00-02:00 Embedded Systems, 02:00-04:00 Embedded Lab.",
+    "keywords": ["entc", "tuesday", "microcontrollers", "control systems", "embedded", "lab"],
+    "chunk_id": 6
+  },
+  {
+    "source": "temp-dept-timetable-2026",
+    "category": "timetable",
+    "section": "Common timetable policy",
+    "content": "Short breaks are 11:00-11:15 and lunch break is 12:15-01:00 for IT, CS, and ENTC. Labs are generally scheduled in 2-hour blocks in the afternoon.",
+    "keywords": ["policy", "break", "lunch", "lab timing", "it", "cs", "entc"],
+    "chunk_id": 7
+  },
+  {
+    "source": "temp-dept-timetable-2026",
+    "category": "timetable",
+    "section": "Classroom mapping - IT",
+    "content": "IT theory classes are usually in Room IT-301 and IT-302. IT labs are in Lab IT-L1 and IT-L2.",
+    "keywords": ["it", "classroom", "room", "lab", "it-301", "it-l1"],
+    "chunk_id": 8
+  },
+  {
+    "source": "temp-dept-timetable-2026",
+    "category": "timetable",
+    "section": "Classroom mapping - CS and ENTC",
+    "content": "CS theory classes are in Room CS-201 and CS-202, CS labs in CS-L1. ENTC theory classes are in ENTC-101 and ENTC-102, ENTC labs in ENTC-L1.",
+    "keywords": ["cs", "entc", "classroom", "room", "lab", "mapping"],
+    "chunk_id": 9
+  }
+]

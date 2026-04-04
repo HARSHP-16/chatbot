@@ -24,16 +24,17 @@
             </div>
             
             <ul class="nav-links">
-                <li class="active"><a href="#"><i data-feather="grid"></i> Dashboard</a></li>
-                <li><a href="#"><i data-feather="message-square"></i> Chatbot Assistant</a></li>
-                <li><a href="#"><i data-feather="calendar"></i> Academic Schedule</a></li>
-                <li><a href="#"><i data-feather="map-pin"></i> Campus Events</a></li>
-                <li><a href="#"><i data-feather="home"></i> Hostel Services</a></li>
-                <li><a href="#"><i data-feather="briefcase"></i> Placement Cell</a></li>
-                <li><a href="#"><i data-feather="compass"></i> Navigation Help</a></li>
-                <li><a href="#"><i data-feather="users"></i> Faculty Directory</a></li>
-                <li><a href="#"><i data-feather="bell"></i> Notifications</a></li>
-                <li><a href="#"><i data-feather="settings"></i> Settings</a></li>
+                <li class="active"><a href="#top"><i data-feather="grid"></i> Dashboard</a></li>
+                <li><a href="#chat-section"><i data-feather="message-square"></i> Chatbot Assistant</a></li>
+                <li><a href="feature.html#schedule"><i data-feather="calendar"></i> Academic Schedule</a></li>
+                <li><a href="feature.html#events"><i data-feather="map-pin"></i> Campus Events</a></li>
+                <li><a href="feature.html#hostel"><i data-feather="home"></i> Hostel Services</a></li>
+                <li><a href="feature.html#placement"><i data-feather="briefcase"></i> Placement Cell</a></li>
+                <li><a href="feature.html#navigation"><i data-feather="compass"></i> Navigation Help</a></li>
+                <li><a href="feature.html#faculty"><i data-feather="users"></i> Faculty Directory</a></li>
+                <li><a href="feature.html#notifications"><i data-feather="bell"></i> Notifications</a></li>
+                <li id="staffPortalNav" style="display:none;"><a href="portal.html"><i data-feather="edit-3"></i> Staff Portal</a></li>
+                <li><a href="profile.html"><i data-feather="settings"></i> Profile & Settings</a></li>
             </ul>
 
             <div class="sidebar-footer">
@@ -45,7 +46,7 @@
         </aside>
 
         <!-- Main Content Area -->
-        <main class="main-content">
+        <main class="main-content" id="top">
             <!-- 2. Top Navbar -->
             <header class="top-navbar">
                 <div class="search-bar">
@@ -54,6 +55,11 @@
                 </div>
                 
                 <div class="top-controls">
+                    <div class="datetime-widget">
+                        <span id="live-date">--</span>
+                        <strong id="live-time">--:--</strong>
+                    </div>
+
                     <!-- Language Dropdown -->
                     <div class="language-selector">
                         <i data-feather="globe"></i>
@@ -61,6 +67,16 @@
                             <option value="en">English</option>
                             <option value="hi">Hindi (हिंदी)</option>
                             <option value="mr">Marathi (मराठी)</option>
+                            <option value="bn">Bengali (বাংলা)</option>
+                            <option value="ta">Tamil (தமிழ்)</option>
+                            <option value="te">Telugu (తెలుగు)</option>
+                            <option value="gu">Gujarati (ગુજરાતી)</option>
+                            <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                            <option value="ml">Malayalam (മലയാളം)</option>
+                            <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+                            <option value="or">Odia (ଓଡ଼ିଆ)</option>
+                            <option value="as">Assamese (অসমীয়া)</option>
+                            <option value="ur">Urdu (اردو)</option>
                         </select>
                     </div>
 
@@ -70,13 +86,18 @@
                         <span class="badge">3</span>
                     </button>
 
-                    <!-- User Profile -->
-                    <div class="user-profile">
-                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=6c5ce7&color=fff&rounded=true" alt="User Profile">
-                        <div class="user-info">
-                            <span class="user-name">Admin User</span>
-                            <span class="user-role">Superintendent</span>
-                        </div>
+                    <!-- User Profile with Logout -->
+                    <div class="user-profile-menu">
+                        <a class="user-profile" href="profile.html" style="text-decoration:none; color:inherit;">
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&background=6c5ce7&color=fff&rounded=true" alt="User Profile">
+                            <div class="user-info">
+                                <span class="user-name">Admin User</span>
+                                <span class="user-role">Superintendent</span>
+                            </div>
+                        </a>
+                        <button id="logoutBtn" class="logout-btn" title="Logout">
+                            <i data-feather="log-out"></i>
+                        </button>
                     </div>
                 </div>
             </header>
@@ -85,7 +106,7 @@
             <div class="dashboard-grid">
                 
                 <!-- 3. Main Hero Section (Chatbot) -->
-                <section class="hero-chatbot glass-card">
+                <section class="hero-chatbot glass-card" id="chat-section">
                     <div class="chat-header">
                         <div class="bot-info">
                             <div class="bot-avatar">
@@ -93,7 +114,11 @@
                             </div>
                             <div>
                                 <h3>AI Core Assistant</h3>
-                                <p>Ready to help in English | हिंदी | मराठी</p>
+                                <p>Ready to help in 10+ Indian languages</p>
+                                <div class="chat-status" id="chat-status">
+                                    <span class="chat-status-dot"></span>
+                                    <span>Online</span>
+                                </div>
                             </div>
                         </div>
                         <div class="chat-actions">
@@ -130,7 +155,7 @@
                 </section>
 
                 <!-- 4. Right Side Quick Stats Panel -->
-                <section class="quick-stats">
+                <section class="quick-stats" id="quick-stats">
                     <div class="stat-card glass-card">
                         <div class="stat-icon purple"><i data-feather="users"></i></div>
                         <div class="stat-data">
@@ -176,7 +201,7 @@
                 </section>
 
                 <!-- 5. Smart Features Section -->
-                <section class="smart-features glass-card">
+                <section class="smart-features glass-card" id="smart-features">
                     <div class="section-title">
                         <h3>Campus Smart Features</h3>
                     </div>
@@ -236,13 +261,103 @@
                     </div>
                 </section>
 
+                <section class="profile-overview glass-card" id="profile-overview">
+                    <div class="profile-overview-header">
+                        <div>
+                            <h3>Your Student Profile</h3>
+                            <p id="profileCompletionText">Complete your profile to improve AI answers.</p>
+                        </div>
+                        <button id="openProfileModal" class="mini-btn">Edit Profile</button>
+                    </div>
+
+                    <div class="profile-overview-grid">
+                        <div class="overview-item">
+                            <span>Name</span>
+                            <strong id="summaryName">Not set</strong>
+                        </div>
+                        <div class="overview-item">
+                            <span>Email</span>
+                            <strong id="summaryEmail">Not set</strong>
+                        </div>
+                        <div class="overview-item">
+                            <span>Department</span>
+                            <strong id="summaryDepartment">Not set</strong>
+                        </div>
+                        <div class="overview-item">
+                            <span>Age</span>
+                            <strong id="summaryAge">Not set</strong>
+                        </div>
+                        <div class="overview-item">
+                            <span>Semester</span>
+                            <strong id="summarySemester">Not set</strong>
+                        </div>
+                        <div class="overview-item">
+                            <span>Profile Completion</span>
+                            <strong id="summaryCompletion">0%</strong>
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </main>
     </div>
 
+    <div class="modal-backdrop" id="profileModalBackdrop">
+        <div class="profile-modal">
+            <div class="profile-modal-header">
+                <h3>Edit Profile</h3>
+                <button id="closeProfileModal" class="icon-btn" title="Close">✕</button>
+            </div>
+
+            <form id="dashboardProfileForm" class="profile-form-grid">
+                <label>
+                    <span>Name</span>
+                    <input id="dashName" type="text" placeholder="Your full name" required>
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input id="dashEmail" type="email" placeholder="you@college.edu" required>
+                </label>
+                <label>
+                    <span>Department</span>
+                    <select id="dashDepartment" required>
+                        <option value="">Select department</option>
+                        <option value="IT">Information Technology (IT)</option>
+                        <option value="CS">Computer Science (CS)</option>
+                        <option value="ENTC">Electronics and Telecommunication (ENTC)</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Age</span>
+                    <input id="dashAge" type="number" min="15" max="60" placeholder="18" required>
+                </label>
+                <label>
+                    <span>Semester</span>
+                    <select id="dashSemester" required>
+                        <option value="">Select semester</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                </label>
+
+                <div class="profile-modal-actions">
+                    <button type="submit" class="mini-btn">Save Profile</button>
+                    <button type="button" id="goToFullProfile" class="mini-btn ghost">Open Full Page</button>
+                </div>
+                <p id="profileModalStatus" class="profile-modal-status"></p>
+            </form>
+        </div>
+    </div>
+
     <!-- Initialize Feather Icons & attach custom script -->
     <script>
-        feather.replace();
+        if (typeof feather !== 'undefined') { feather.replace(); }
     </script>
     <script src="./dashboard.js"></script>
 </body>

@@ -1,17 +1,15 @@
 {
   "updated_at": "2026-04-04",
   "files_scanned": 3,
-  "total_entries": 1012,
+  "total_entries": 419,
   "categories": {
-    "timetable": 8,
-    "general": 645,
-    "fees": 22,
-    "exam": 94,
-    "courses": 172,
-    "contact": 4,
-    "admission": 67
+    "subject": 211,
+    "syllabus": 92,
+    "project": 47,
+    "exam": 67,
+    "timetable": 2
   },
   "sources": {
-    "SE-Syllabus-2024-Pattern1.pdf": 1012
+    "SE-Syllabus-2024-Pattern1": 419
   }
 }

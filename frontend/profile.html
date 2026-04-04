@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile | UniMind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./profile.css">
+</head>
+<body>
+    <div class="profile-page">
+        <header class="topbar">
+            <a class="back-link" href="dashboard.html">Back to Dashboard</a>
+            <h1>Student Profile</h1>
+            <button id="logoutBtnProfile" class="logout-btn-simple" title="Logout">Logout</button>
+        </header>
+
+        <main class="layout">
+            <section class="card form-card">
+                <h2>Your Information</h2>
+                <p class="muted">Save this once. UniMind will use it for better answers.</p>
+
+                <form id="profileForm">
+                    <div class="grid">
+                        <label>
+                            <span>Name</span>
+                            <input id="name" type="text" required placeholder="Your full name">
+                        </label>
+                        <label>
+                            <span>Email</span>
+                            <input id="email" type="email" required placeholder="you@college.edu">
+                        </label>
+                        <label>
+                            <span>Department</span>
+                            <select id="department" required>
+                                <option value="">Select department</option>
+                                <option value="IT">Information Technology (IT)</option>
+                                <option value="CS">Computer Science (CS)</option>
+                                <option value="ENTC">Electronics and Telecommunication (ENTC)</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Age</span>
+                            <input id="age" type="number" min="15" max="60" required placeholder="18">
+                        </label>
+                        <label>
+                            <span>Semester</span>
+                            <select id="semester" required>
+                                <option value="">Select semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                                <option value="7">Semester 7</option>
+                                <option value="8">Semester 8</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="actions">
+                        <button type="submit" class="btn primary">Save Profile</button>
+                        <button type="button" id="resetProfile" class="btn ghost">Reset</button>
+                    </div>
+                    <p id="profileStatus" class="status"></p>
+                </form>
+            </section>
+
+            <aside class="card side-card">
+                <div class="clock-wrap">
+                    <p class="label">Current Time</p>
+                    <h3 id="clock">--:--:--</h3>
+                    <p id="todayDate" class="muted">--</p>
+                </div>
+                <div class="tip">
+                    <h4>Profile Tips</h4>
+                    <ul>
+                        <li>Set correct department and semester for accurate timetable answers.</li>
+                        <li>Update semester at the start of each term.</li>
+                        <li>Use the same account for consistent AI memory.</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="./profile.js"></script>
+</body>
+</html>

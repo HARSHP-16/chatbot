@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Feature | UniMind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./feature.css">
+</head>
+<body>
+    <div class="feature-page">
+        <header class="topbar">
+            <a href="dashboard.html" class="back-link">Back to Dashboard</a>
+            <h1 id="featureTitle">Campus Module</h1>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span id="featureDate">--</span>
+                <button id="logoutBtnFeature" class="logout-btn-simple" title="Logout">Logout</button>
+            </div>
+        </header>
+
+        <main class="grid">
+            <section class="card">
+                <div class="card-head">
+                    <h2 id="featureHeading">Details</h2>
+                    <span class="tag" id="featureTag">LIVE</span>
+                </div>
+                <p id="featureDescription" class="muted"></p>
+
+                <div class="search-wrap">
+                    <input id="featureSearch" type="text" placeholder="Search in this section...">
+                </div>
+
+                <div id="featureItems" class="item-list"></div>
+            </section>
+
+            <aside class="card side">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions">
+                    <a href="dashboard.html#chat-section" class="btn">Ask AI</a>
+                    <a href="profile.html" class="btn">Edit Profile</a>
+                    <a href="dashboard.html" class="btn ghost">Dashboard Home</a>
+                </div>
+
+                <div class="clock-box">
+                    <p>Current Time</p>
+                    <h4 id="liveClock">--:--:--</h4>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="./feature.js"></script>
+</body>
+</html>

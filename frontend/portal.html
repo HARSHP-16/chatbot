@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Portal | UniMind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./portal.css">
+</head>
+<body>
+    <div class="portal-page">
+        <header class="portal-top">
+            <a href="dashboard.html" class="back-link">Back to Dashboard</a>
+            <h1>Faculty/Admin Portal</h1>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span id="staffRoleLabel">Role: --</span>
+                <button id="logoutBtnPortal" class="logout-btn-simple" title="Logout">Logout</button>
+            </div>
+        </header>
+
+        <div id="accessWarning" class="access-warning" style="display:none;">
+            This page is for Faculty/Admin only. You are currently signed in as a student.
+        </div>
+
+        <section class="tabs">
+            <button class="tab-btn active" data-tab="events">Post Event</button>
+            <button class="tab-btn" data-tab="timetable">Update Timetable</button>
+            <button class="tab-btn" data-tab="notifications">Post Notification</button>
+        </section>
+
+        <section id="eventsTab" class="panel active">
+            <h2>Create Event</h2>
+            <form id="eventForm" class="form-grid">
+                <input id="eventTitle" type="text" placeholder="Event title" required>
+                <input id="eventDate" type="date" required>
+                <input id="eventVenue" type="text" placeholder="Venue" required>
+                <select id="eventAudience">
+                    <option value="all">Audience: All</option>
+                    <option value="IT">Audience: IT</option>
+                    <option value="CS">Audience: CS</option>
+                    <option value="ENTC">Audience: ENTC</option>
+                </select>
+                <textarea id="eventDescription" placeholder="Event description" rows="3" required></textarea>
+                <button type="submit" class="btn primary">Publish Event</button>
+                <p id="eventStatus" class="status"></p>
+            </form>
+        </section>
+
+        <section id="timetableTab" class="panel">
+            <h2>Update Timetable Row</h2>
+            <form id="timetableForm" class="form-grid">
+                <select id="ttDept" required>
+                    <option value="">Department</option>
+                    <option value="IT">IT</option>
+                    <option value="CS">CS</option>
+                    <option value="ENTC">ENTC</option>
+                </select>
+                <select id="ttDay" required>
+                    <option value="">Day</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                </select>
+                <input id="slot1" type="text" placeholder="Slot 1 (9:00-10:00)">
+                <input id="slot2" type="text" placeholder="Slot 2 (10:00-11:00)">
+                <input id="slot3" type="text" placeholder="Slot 3 (11:15-12:15)">
+                <input id="slot4" type="text" placeholder="Slot 4 (1:00-2:00)">
+                <input id="slot5" type="text" placeholder="Slot 5 (2:00-4:00)">
+                <button type="submit" class="btn primary">Save Timetable</button>
+                <p id="ttStatus" class="status"></p>
+            </form>
+        </section>
+
+        <section id="notificationsTab" class="panel">
+            <h2>Post Notification</h2>
+            <form id="notifForm" class="form-grid">
+                <input id="notifTitle" type="text" placeholder="Notification title" required>
+                <select id="notifAudience">
+                    <option value="all">Audience: All</option>
+                    <option value="IT">Audience: IT</option>
+                    <option value="CS">Audience: CS</option>
+                    <option value="ENTC">Audience: ENTC</option>
+                </select>
+                <textarea id="notifMessage" placeholder="Write notification message" rows="4" required></textarea>
+                <button type="submit" class="btn primary">Publish Notification</button>
+                <p id="notifStatus" class="status"></p>
+            </form>
+        </section>
+    </div>
+
+    <script src="./portal.js"></script>
+</body>
+</html>

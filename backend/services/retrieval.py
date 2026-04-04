@@ -1,74 +1,90 @@
 import re
-from utils.data_manager import load_data
+import utils.data_manager as data_manager
 
-def get_relevant_data(query, top_k=5):
+# Cache to store precomputed sets so we don't regex 15,000 items on every chat
+_indexed_cache = {}
+_index_timestamp = 0
+
+
+def _tokenize(text):
+    return re.findall(r"[a-zA-Z0-9]+", str(text).lower())
+
+def get_relevant_data(query, top_k=40):
     """
-    Retrieve top relevant campus data for a given query.
-    Case-insensitive search, matches query across question, answer, and keywords.
+    Retrieves and ranks relevant chunks from the campus dataset.
     """
     if not query:
         return []
         
-    data = load_data()
+    data = data_manager.load_data()
     if not data:
         return []
         
     query_lower = query.lower().strip()
-    # Strip punctuation for word matching
-    query_clean = re.sub(r'[^\w\s]', '', query_lower)
     
-    # Ignore common stop words for better scoring
-    stop_words = {"what", "is", "the", "a", "an", "for", "in", "of", "to", "and", "on", "are", "do", "does"}
-    query_words = set(w for w in query_clean.split() if w not in stop_words)
-    
-    scored_items = []
-    
-    for item in data:
-        q_text = item.get('question', '').lower()
-        a_text = item.get('answer', '').lower()
-        keywords = item.get('keywords', [])
-        if isinstance(keywords, list):
-            k_text = ' '.join(str(k) for k in keywords).lower()
-        else:
-            k_text = str(keywords).lower()
-            
-        combined_text = q_text + " " + a_text + " " + k_text
-        
-        score = 0
-        
-        # Exact match of the entire query in the combined text (high weight)
-        if query_lower in combined_text:
-            score += 20
-            
-        # Word level matching
-        combined_clean = re.sub(r'[^\w\s]', '', combined_text)
-        combined_words = set(combined_clean.split())
-        
-        word_overlaps = len(query_words.intersection(combined_words))
-        score += word_overlaps * 3
-        
-        # Boost score if keywords match explicitly
-        if any(w in k_text for w in query_words):
-            score += 5
-            
-        # Extra boost for exact acronym match or special terms
-        for w in query_words:
-            if w in q_text.split() or w in a_text.split():
-                score += 2
+    # Ignore common stop words for matching
+    stop_words = {
+        "what", "is", "the", "a", "an", "for", "in", "of", "to", "and", "on", "are", "do", "does",
+        "when", "where", "how", "can", "i", "we", "you", "it", "this", "that", "with", "from", "about"
+    }
+    query_words = set(w for w in _tokenize(query_lower) if w not in stop_words and len(w) > 1)
 
-        if score > 0:
-            scored_items.append({
+    if not query_words:
+        return []
+    
+    global _indexed_cache, _index_timestamp
+    
+    current_time = data_manager._last_modified_time
+    if not _indexed_cache or current_time != _index_timestamp:
+        _indexed_cache = {}
+        for idx, item in enumerate(data):
+            q_text = item.get('question', '').lower()
+            a_text = item.get('answer', '').lower()
+            content = item.get('content', '').lower()
+            section = str(item.get('section', '')).lower()
+            keywords = item.get('keywords', [])
+            if isinstance(keywords, list):
+                k_text = ' '.join(str(k) for k in keywords).lower()
+            else:
+                k_text = str(keywords).lower()
+            category = str(item.get('category', '')).lower()
+            source = str(item.get('source', '')).lower()
+
+            combined_text = " ".join([
+                category,
+                source,
+                section,
+                q_text,
+                a_text,
+                content,
+                k_text,
+            ])
+            token_set = set(_tokenize(combined_text))
+            
+            _indexed_cache[idx] = {
                 'item': item,
-                'score': score
-            })
-            
-    # Sort primarily by score (descending), secondarily by latest date (descending)
-    scored_items.sort(
-        key=lambda x: (x['score'], x['item'].get('updated_at', '0000-00-00')), 
-        reverse=True
-    )
+                'combined_text': combined_text,
+                'token_set': token_set
+            }
+        _index_timestamp = current_time
     
-    # Return top answers
-    top_results = [result['item'] for result in scored_items[:top_k]]
-    return top_results
+    results = []
+    for idx, item in enumerate(data):
+        cache_item = _indexed_cache.get(idx)
+        if not cache_item:
+            continue
+            
+        combined_text = cache_item['combined_text']
+        token_set = cache_item['token_set']
+        overlap = query_words.intersection(token_set)
+        if not overlap:
+            continue
 
+        # Higher score for exact phrase and stronger token overlap.
+        overlap_score = len(overlap)
+        phrase_bonus = 3 if query_lower in combined_text else 0
+        score = overlap_score + phrase_bonus
+        results.append((score, cache_item['item']))
+
+    results.sort(key=lambda x: x[0], reverse=True)
+    return [item for _, item in results[:top_k]]

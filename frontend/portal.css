@@ -1,0 +1,161 @@
+:root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #6c5ce7;
+    --secondary: #00cec9;
+    --border: rgba(31, 41, 55, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at 10% 10%, #ffffff 0%, #eef3ff 55%, #f4f7fb 100%);
+}
+
+.portal-page {
+    min-height: 100vh;
+    padding: 1.2rem;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.portal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.portal-top h1 {
+    margin: 0;
+    font-size: 1.35rem;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+#staffRoleLabel {
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.logout-btn-simple {
+    background: rgba(220, 38, 38, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn-simple:hover {
+    background: rgba(220, 38, 38, 0.2);
+    border-color: rgba(220, 38, 38, 0.4);
+}
+
+.access-warning {
+    margin-bottom: 1rem;
+    background: #fff7ed;
+    color: #9a3412;
+    border: 1px solid #fdba74;
+    border-radius: 12px;
+    padding: 0.8rem;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.tab-btn {
+    border: 1px solid var(--border);
+    background: #ffffff;
+    border-radius: 999px;
+    padding: 0.6rem 0.9rem;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    color: #fff;
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.panel {
+    display: none;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+    box-shadow: 0 8px 26px rgba(0,0,0,0.08);
+    padding: 1rem;
+}
+
+.panel.active {
+    display: block;
+}
+
+.panel h2 {
+    margin-top: 0;
+    font-size: 1.05rem;
+}
+
+.form-grid {
+    display: grid;
+    gap: 0.7rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.7rem 0.8rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.btn {
+    border: none;
+    border-radius: 999px;
+    padding: 0.7rem 1rem;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+}
+
+.status {
+    min-height: 18px;
+    margin: 0;
+    color: #15803d;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .portal-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

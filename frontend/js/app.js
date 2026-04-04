@@ -1,6 +1,31 @@
 const API_BASE = 'http://127.0.0.1:5000/api';
 
 document.addEventListener('DOMContentLoaded', () => {
+    const getOrCreateSessionId = () => {
+        const existing = localStorage.getItem('chatSessionId');
+        if (existing) return existing;
+
+        const generated = (window.crypto && window.crypto.randomUUID)
+            ? window.crypto.randomUUID()
+            : `chat-${Date.now()}-${Math.floor(Math.random() * 100000)}`;
+        localStorage.setItem('chatSessionId', generated);
+        return generated;
+    };
+
+    const chatSessionId = getOrCreateSessionId();
+
+    const pwdToggles = document.querySelectorAll('.pwd-toggle');
+    pwdToggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            if (!input) return;
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            btn.textContent = isPassword ? 'Hide' : 'Show';
+        });
+    });
+
     // -------------------------------------------------------
     // Navbar Scroll Effect
     // -------------------------------------------------------
@@ -39,11 +64,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email    = loginForm.querySelector('input[type="email"]').value.trim();
-            const password = loginForm.querySelector('input[type="password"]').value.trim();
+            const email    = (document.getElementById('loginEmail') || loginForm.querySelector('input[type="email"]')).value.trim();
+            const password = (document.getElementById('loginPassword') || loginForm.querySelector('input[type="password"]')).value.trim();
             const role     = document.querySelector('.role-btn.active')?.textContent.trim().toLowerCase() || 'student';
             const errEl    = document.getElementById('loginError');
+            const okEl     = document.getElementById('loginSuccess');
             const submitBtn = loginForm.querySelector('button[type="submit"]');
+
+            if (errEl) {
+                errEl.style.display = 'none';
+                errEl.textContent = '';
+            }
+            if (okEl) {
+                okEl.style.display = 'none';
+                okEl.textContent = '';
+            }
 
             submitBtn.textContent = 'Signing in...';
             submitBtn.disabled = true;
@@ -52,11 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const res  = await fetch(`${API_BASE}/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    body: JSON.stringify({ email, password, role })
                 });
                 const data = await res.json();
 
                 if (res.ok) {
+                    if (okEl) {
+                        okEl.textContent = 'Login successful. Redirecting...';
+                        okEl.style.display = 'block';
+                    }
                     // Store session info
                     localStorage.setItem('campusUser', JSON.stringify({
                         name: data.name,
@@ -81,10 +120,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
+        const regPasswordInput = document.getElementById('regPassword');
+        const passwordStrength = document.getElementById('passwordStrength');
+
+        if (regPasswordInput && passwordStrength) {
+            regPasswordInput.addEventListener('input', () => {
+                const value = regPasswordInput.value.trim();
+                if (value.length >= 12) {
+                    passwordStrength.textContent = 'Strong password.';
+                } else if (value.length >= 8) {
+                    passwordStrength.textContent = 'Good password.';
+                } else {
+                    passwordStrength.textContent = 'Use at least 8 characters.';
+                }
+            });
+        }
+
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const name     = registerForm.querySelector('input[type="text"]').value.trim();
-            const email    = registerForm.querySelector('input[type="email"]').value.trim();
+            const name     = (document.getElementById('regName') || registerForm.querySelector('input[type="text"]')).value.trim();
+            const email    = (document.getElementById('regEmail') || registerForm.querySelector('input[type="email"]')).value.trim();
             const password = document.getElementById('regPassword').value.trim();
             const confirm  = document.getElementById('regConfirm').value.trim();
             const role     = document.querySelector('.role-btn.active')?.textContent.trim().toLowerCase() || 'student';
@@ -93,6 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (password !== confirm) {
                 if (errEl) { errEl.textContent = 'Passwords do not match!'; errEl.style.display = 'block'; }
+                return;
+            }
+            if (password.length < 8) {
+                if (errEl) { errEl.textContent = 'Password must be at least 8 characters.'; errEl.style.display = 'block'; }
                 return;
             }
             if (errEl) errEl.style.display = 'none';
@@ -175,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const typingId = showTypingIndicator();
         const language = langSelect ? langSelect.value : 'en';
+        const studentProfile = JSON.parse(localStorage.getItem('studentProfile') || '{}');
 
         // Get role from localStorage (set after login), default to student
         const user = JSON.parse(localStorage.getItem('campusUser') || '{}');
@@ -184,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const res  = await fetch(`${API_BASE}/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text, language, role })
+                body: JSON.stringify({ message: text, language, role, session_id: chatSessionId, user_profile: studentProfile })
             });
             const data = await res.json();
 
