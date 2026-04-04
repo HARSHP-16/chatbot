@@ -17,8 +17,5 @@ COPY . .
 # Expose port for Azure App Service
 EXPOSE 8000
 
-# Set working directory to backend
-WORKDIR /app/backend
-
-# Run gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "--worker-class", "sync", "--timeout", "60", "app:app"]
+# Run gunicorn from the /app root so backend package is importable
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "--worker-class", "sync", "--timeout", "60", "backend.app:app"]
