@@ -6,3 +6,6 @@ python-dotenv
 
 # Google Gemini API SDK
 google-generativeai
+
+# For cross-origin requests
+flask-cors
