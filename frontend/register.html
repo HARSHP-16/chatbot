@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | UniMind AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar" style="background: transparent; border: none; backdrop-filter: none;">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#paint0_linear)"/>
+                    <path d="M2 17L12 22L22 17" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="var(--tertiary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="paint0_linear" x1="12" y1="2" x2="12" y2="12" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#6366f1"/>
+                            <stop offset="1" stop-color="#0ea5e9"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                UniMind
+            </a>
+        </div>
+    </nav>
+
+    <div class="auth-wrapper">
+        <div class="auth-card" style="margin-top: 2rem; margin-bottom: 2rem;">
+            <div class="auth-header">
+                <h2>Create Account</h2>
+                <p class="text-muted">Join the smart campus revolution</p>
+            </div>
+            
+            <div class="role-selector">
+                <button class="role-btn active" type="button">Student</button>
+                <button class="role-btn" type="button">Faculty</button>
+                <button class="role-btn" type="button">Admin</button>
+            </div>
+
+            <form action="login.html" method="GET" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" placeholder="you@university.edu" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="regPassword" class="form-control" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" id="regConfirm" class="form-control" placeholder="••••••••" required>
+                    <small id="passwordMatchError" style="color: #ef4444; display: none; margin-top: 0.25rem;">Passwords do not match!</small>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Register</button>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            const pwd = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+            if (pwd !== confirm) {
+                e.preventDefault();
+                document.getElementById('passwordMatchError').style.display = 'block';
+            } else {
+                document.getElementById('passwordMatchError').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
