@@ -1,0 +1,27 @@
+[
+  {
+    "topic": "exams",
+    "keywords": ["exam", "dates", "schedule", "midterms", "finals"],
+    "content": "Midterm exams are scheduled from October 15th to October 25th. Final exams will begin on December 10th and conclude on December 20th. Make sure to download your admit card from the student portal before November 30th."
+  },
+  {
+    "topic": "attendance",
+    "keywords": ["attendance", "rules", "minimum", "shortage"],
+    "content": "Students must maintain a minimum of 75% attendance in all core subjects to be eligible for the final semester exams. Medical leaves require a valid doctor's certificate submitted within 3 days of returning."
+  },
+  {
+    "topic": "fees",
+    "keywords": ["fees", "payment", "deadline", "tuition", "fine"],
+    "content": "The last date for tuition fee payment for the even semester is January 15th. Payments made after this date will incur a late fine of Rs. 500 per week. Payments can be made via the university portal or SBI collect."
+  },
+  {
+    "topic": "timetable",
+    "keywords": ["timetable", "schedule", "classes", "timings", "shift"],
+    "content": "Morning shift classes run from 8:30 AM to 1:30 PM. Evening shift classes run from 2:00 PM to 7:00 PM. The ML lab (Room 204) is booked for the morning shift on Mondays and Wednesdays."
+  },
+  {
+    "topic": "hostel",
+    "keywords": ["hostel", "rooms", "mess", "warden", "curfew"],
+    "content": "Hostel gate closes at 10:00 PM sharp. The mess operates from 7:30 AM to 9:00 AM for breakfast, 12:30 PM to 2:00 PM for lunch, and 8:00 PM to 9:30 PM for dinner."
+  }
+]
