@@ -7,12 +7,12 @@ from dotenv import load_dotenv
 # override=True ensures .env always wins over system environment variables
 load_dotenv(override=True)
 
-from backend.routes.chat_routes import chat_bp
-from backend.routes.auth_routes import auth_bp
-from backend.routes.admin import admin_bp
+from routes.chat_routes import chat_bp
+from routes.auth_routes import auth_bp
+from routes.admin import admin_bp
 
 # Serve the frontend folder as static files
-FRONTEND_DIR = os.path.join(os.getcwd(), 'frontend')
+FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'frontend')
 
 app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path='')
 

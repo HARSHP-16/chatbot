@@ -1,6 +1,6 @@
 import re
-from backend.services.retrieval import get_relevant_data
-from backend.services.ai_service import get_ai_response
+from services.retrieval import get_relevant_data
+from services.ai_service import get_ai_response
 
 
 _CAMPUS_HINT_WORDS = {
