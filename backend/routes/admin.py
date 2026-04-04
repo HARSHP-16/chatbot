@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from backend.utils.data_manager import add_entry
+from ..utils.data_manager import add_entry
 
 admin_bp = Blueprint('admin', __name__)
 

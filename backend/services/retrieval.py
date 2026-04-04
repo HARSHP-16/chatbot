@@ -1,5 +1,5 @@
 import re
-import backend.utils.data_manager as data_manager
+from ..utils import data_manager
 
 # Cache to store precomputed sets so we don't regex 15,000 items on every chat
 _indexed_cache = {}

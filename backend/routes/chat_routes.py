@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
-from backend.services.ai_agent import handle_query
-from backend.services.chat_memory import get_history, append_turn, clear_history
-from backend.utils.language import normalize_language
+from ..services.ai_agent import handle_query
+from ..services.chat_memory import get_history, append_turn, clear_history
+from ..utils.language import normalize_language
 
 chat_bp = Blueprint('chat_bp', __name__)
 
