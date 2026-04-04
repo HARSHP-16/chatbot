@@ -1,0 +1,17 @@
+runtime: python311
+entryPoint: gunicorn --bind 0.0.0.0:8000 --workers 4 --worker-class sync --timeout 60 backend.app:app
+
+handlers:
+- url: /api/.*
+  script: backend.app:app
+
+- url: /.*
+  script: backend.app:app
+
+env_variables:
+  FLASK_ENV: production
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 5
+  target_cpu_utilization: 0.75

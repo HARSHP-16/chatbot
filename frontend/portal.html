@@ -31,21 +31,32 @@
         </section>
 
         <section id="eventsTab" class="panel active">
-            <h2>Create Event</h2>
-            <form id="eventForm" class="form-grid">
-                <input id="eventTitle" type="text" placeholder="Event title" required>
-                <input id="eventDate" type="date" required>
-                <input id="eventVenue" type="text" placeholder="Venue" required>
-                <select id="eventAudience">
-                    <option value="all">Audience: All</option>
-                    <option value="IT">Audience: IT</option>
-                    <option value="CS">Audience: CS</option>
-                    <option value="ENTC">Audience: ENTC</option>
-                </select>
-                <textarea id="eventDescription" placeholder="Event description" rows="3" required></textarea>
-                <button type="submit" class="btn primary">Publish Event</button>
-                <p id="eventStatus" class="status"></p>
-            </form>
+            <div class="panel-content">
+                <div class="form-section">
+                    <h2>Create Event</h2>
+                    <p class="section-hint">Post news events for your students. They'll see it instantly in their event feeds.</p>
+                    <form id="eventForm" class="form-grid">
+                        <input id="eventTitle" type="text" placeholder="Event title (e.g., Hackathon Sprint)" required>
+                        <input id="eventDate" type="date" required>
+                        <input id="eventVenue" type="text" placeholder="Venue / Location" required>
+                        <input id="eventTime" type="time" placeholder="Event time">
+                        <select id="eventAudience">
+                            <option value="all">Visibility: All Students</option>
+                            <option value="IT">Visibility: IT Only</option>
+                            <option value="CS">Visibility: CS Only</option>
+                            <option value="ENTC">Visibility: ENTC Only</option>
+                        </select>
+                        <textarea id="eventDescription" placeholder="Event description and details..." rows="3" required></textarea>
+                        <button type="submit" class="btn primary">Publish Event</button>
+                        <p id="eventStatus" class="status"></p>
+                    </form>
+                </div>
+
+                <div class="preview-section">
+                    <h3>Posted Events</h3>
+                    <div id="postedEventsList" class="events-preview"></div>
+                </div>
+            </div>
         </section>
 
         <section id="timetableTab" class="panel">

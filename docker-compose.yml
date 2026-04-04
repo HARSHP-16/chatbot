@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - FLASK_ENV=production
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - DEBUG=False
+    volumes:
+      - ./backend:/app/backend
+      - ./frontend:/app/frontend
+    command: gunicorn --bind 0.0.0.0:8000 --workers 4 backend.app:app

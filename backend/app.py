@@ -3,7 +3,7 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 
-# Load env variables before importing routes (routes need GEMINI_API_KEY)
+# Load env variables before importing routes (routes need GROQ_API_KEY)
 # override=True ensures .env always wins over system environment variables
 load_dotenv(override=True)
 
@@ -16,8 +16,16 @@ FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__fi
 
 app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path='')
 
-# Allow all origins for hackathon dev (tighten in production)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+# Production configuration
+app.config['ENV'] = os.getenv('FLASK_ENV', 'development')
+app.config['DEBUG'] = os.getenv('DEBUG', 'False').lower() == 'true'
+app.config['PREFERRED_URL_SCHEME'] = 'https' if app.config['ENV'] == 'production' else 'http'
+
+# CORS configuration - restrict in production
+if app.config['ENV'] == 'production':
+    CORS(app, resources={r"/api/*": {"origins": ["https://unimind-chatbot.azurewebsites.net"]}})
+else:
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # --- Register Blueprints ---
 app.register_blueprint(chat_bp,  url_prefix='/api')       # POST /api/chat
@@ -38,7 +46,8 @@ def serve_static(filename):
 def health_check():
     return jsonify({
         "status": "ok",
-        "message": "CampusCopilot Flask API is running.",
+        "message": "UniMind Flask API is running.",
+        "environment": app.config['ENV'],
         "endpoints": {
             "chat":     "POST /api/chat",
             "login":    "POST /api/auth/login",
@@ -46,6 +55,15 @@ def health_check():
             "admin":    "POST /api/admin/update-data"
         }
     })
+
+# --- Error Handlers ---
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({"error": "Endpoint not found"}), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return jsonify({"error": "Internal server error"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
