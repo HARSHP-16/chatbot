@@ -1,4 +1,4 @@
-from backend.utils.language import get_language_label
+from .language import get_language_label
 
 
 def _format_chat_history(chat_history):
