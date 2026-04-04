@@ -3,24 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unimind Dashboard</title>
-    <!-- Google Fonts: Poppins -->
+    <title>UniMind AI Dashboard</title>
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Feather Icons for lightweight modern icons -->
     <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="./dashboard.css">
 </head>
 <body>
+    <!-- Premium Mesh Background Blobs (From Landing Page) -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    
     <div class="dashboard-container">
         <!-- 1. Left Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <div class="logo-box">
-                    <i data-feather="cpu"></i>
+                <div class="logo-box" style="background: transparent; box-shadow: none;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#paint0_linear)"/>
+                        <path d="M2 17L12 22L22 17" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="var(--tertiary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="paint0_linear" x1="12" y1="2" x2="12" y2="12" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#6366f1"/>
+                                <stop offset="1" stop-color="#0ea5e9"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
                 </div>
-                <h2>Uni<span class="highlight">mind</span></h2>
+                <h2 style="font-weight: 700; color: #020617; letter-spacing: -0.03em;">UniMind AI</h2>
             </div>
             
             <ul class="nav-links">
