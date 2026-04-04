@@ -1,20 +1,50 @@
 [
   {
-    "question": "exam form last date",
-    "answer": "15 April",
-    "category": "exam",
+    "question": "when is the exam",
+    "answer": "Midterm exams are scheduled from October 15th to October 25th. Final exams will begin on December 10th and conclude on December 20th. Make sure to download your admit card from the student portal before November 30th.",
+    "category": "exams",
     "updated_at": "2026-04-04"
   },
   {
-    "question": "hostel curfew timing",
-    "answer": "10:00 PM for all students",
-    "category": "hostel",
-    "updated_at": "2026-04-03"
+    "question": "what are the attendance rules",
+    "answer": "Students must maintain a minimum of 75% attendance in all core subjects to be eligible for the final semester exams. Medical leaves require a valid doctor's certificate submitted within 3 days of returning.",
+    "category": "attendance",
+    "updated_at": "2026-04-04"
   },
   {
-    "question": "midterm exams schedule",
-    "answer": "From October 15th to October 25th",
-    "category": "exam",
-    "updated_at": "2026-04-01"
+    "question": "what is the fee payment deadline",
+    "answer": "The last date for tuition fee payment for the even semester is January 15th. Payments made after this date will incur a late fine of Rs. 500 per week. Payments can be made via the university portal or SBI collect.",
+    "category": "fees",
+    "updated_at": "2026-04-04"
+  },
+  {
+    "question": "what is the class timetable schedule",
+    "answer": "Morning shift classes run from 8:30 AM to 1:30 PM. Evening shift classes run from 2:00 PM to 7:00 PM. The ML lab (Room 204) is booked for the morning shift on Mondays and Wednesdays.",
+    "category": "timetable",
+    "updated_at": "2026-04-04"
+  },
+  {
+    "question": "what are the hostel rules and mess timings",
+    "answer": "Hostel gate closes at 10:00 PM sharp. The mess operates from 7:30 AM to 9:00 AM for breakfast, 12:30 PM to 2:00 PM for lunch, and 8:00 PM to 9:30 PM for dinner.",
+    "category": "hostel",
+    "updated_at": "2026-04-04"
+  },
+  {
+    "question": "how to raise a complaint",
+    "answer": "You can raise a complaint by contacting the admin desk at Room 101 or emailing complaints@campus.edu. Complaints about hostel, Wi-Fi, or maintenance are processed within 48 hours.",
+    "category": "complaint",
+    "updated_at": "2026-04-04"
+  },
+  {
+    "question": "placement schedule and companies visiting",
+    "answer": "Placement season begins in November. Companies like Google, Microsoft, TCS, and Infosys are scheduled to visit. Students must register on the placement portal by October 31st to be eligible.",
+    "category": "placements",
+    "updated_at": "2026-04-04"
+  },
+  {
+    "question": "where is the library located",
+    "answer": "The library is located behind the CS building. It is open from 8 AM to 9 PM on weekdays and 9 AM to 5 PM on weekends. Students can borrow up to 3 books at a time.",
+    "category": "navigation",
+    "updated_at": "2026-04-04"
   }
 ]

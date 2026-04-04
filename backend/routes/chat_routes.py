@@ -1,49 +1,28 @@
-import os
 from flask import Blueprint, request, jsonify
-import google.generativeai as genai
+from services.ai_agent import handle_query
 
 chat_bp = Blueprint('chat_bp', __name__)
 
-# Configure Gemini
-# If the key is missing or 'mock', we bypass actual initialization
-API_KEY = os.getenv("GEMINI_API_KEY", "mock")
-if API_KEY != "mock":
-    genai.configure(api_key=API_KEY)
-
 @chat_bp.route('/chat', methods=['POST'])
 def chat():
+    """
+    Main chat endpoint. Delegates to the RAG-based AI agent pipeline.
+    Expects: { "message": str, "language": str (en/hi/mr), "role": str (student/faculty/admin) }
+    Returns: { "reply": str }
+    """
     data = request.get_json()
-    
+
     if not data or 'message' not in data:
         return jsonify({"error": "Message is required"}), 400
 
-    message = data['message']
+    message = data.get('message', '').strip()
     language = data.get('language', 'en')
+    role = data.get('role', 'student')
 
-    lang_instruction = " Please reply in English."
-    if language == 'hi':
-        lang_instruction = " Please reply in Hindi."
-    elif language == 'mr':
-        lang_instruction = " Please reply in Marathi."
-        
-    system_prompt = f"You are CampusCopilot, an intelligent campus assistant for students and faculty. You help with scheduling, navigating the campus, finding faculty details, and campus events. Limit your responses to 3-5 concise sentences unless a detailed list is requested. Be polite and helpful.{lang_instruction}"
-    
-    full_prompt = f"{system_prompt}\n\nUser: {message}"
+    if not message:
+        return jsonify({"error": "Message cannot be empty"}), 400
 
-    try:
-        if API_KEY == "mock":
-            # Return a mock response if we are just testing local setup without API key
-            return jsonify({
-                "reply": f"(Mock) Request received in {language}: {message}. Configure GEMINI_API_KEY for real responses."
-            }), 200
+    # Route through the full RAG pipeline (retrieval → prompt build → Gemini)
+    reply = handle_query(user_question=message, role=role, language=language)
 
-        model = genai.GenerativeModel('gemini-2.5-flash')
-        response = model.generate_content(full_prompt)
-        
-        return jsonify({
-            "reply": response.text
-        }), 200
-        
-    except Exception as e:
-        print("Chat Error:", str(e))
-        return jsonify({"error": "Failed to process chat request"}), 500
+    return jsonify({"reply": reply}), 200

@@ -1,28 +1,45 @@
-from services.retrieval import retrieve_context
+from services.retrieval import get_relevant_data
 from services.ai_service import get_ai_response
 
-def handle_query(user_question, role="student"):
+def handle_query(user_question, role="student", language="en"):
     """
     Main entry point for the AI Agent system.
     Follows Retrieval-Augmented Generation (RAG) architecture.
-    
+
     Args:
         user_question (str): The query sent by the user in any language.
-        role (str): The role of the user (e.g., student, faculty).
-        
+        role (str): The role of the user (e.g., student, faculty, admin).
+        language (str): Language code for the reply (en, hi, mr).
+
     Returns:
         str: Final intelligent, context-aware answer from the bot.
     """
-    # 1. Error Handling: empty query
+    # 1. Guard: empty query
     if not user_question or str(user_question).strip() == "":
         return "Please ask a valid question."
-        
-    # 2. Retrieval: Fetch relevant knowledge from JSON dataset
-    retrieved_data = retrieve_context(user_question, top_k=2)
-    
-    # 3. GenAI API call: Pass question, retrieved data, and role
-    final_answer = get_ai_response(question=user_question, data=retrieved_data, role=role)
-    
+
+    # 2. Retrieval: Fetch relevant knowledge from the JSON dataset
+    results = get_relevant_data(user_question, top_k=2)
+
+    # Format retrieved items into a readable context string for the prompt
+    if results:
+        context_parts = []
+        for item in results:
+            q = item.get('question', '')
+            a = item.get('answer', '')
+            context_parts.append(f"Q: {q}\nA: {a}")
+        retrieved_data = "\n\n".join(context_parts)
+    else:
+        retrieved_data = ""
+
+    # 3. GenAI API call: Pass question, retrieved data, role, and language
+    final_answer = get_ai_response(
+        question=user_question,
+        data=retrieved_data,
+        role=role,
+        language=language
+    )
+
     # 4. Return clean response
     return final_answer
 
