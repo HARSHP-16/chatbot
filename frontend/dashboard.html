@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unimind Dashboard</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Feather Icons for lightweight modern icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="./dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 1. Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">
+                    <i data-feather="cpu"></i>
+                </div>
+                <h2>Uni<span class="highlight">mind</span></h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="active"><a href="#"><i data-feather="grid"></i> Dashboard</a></li>
+                <li><a href="#"><i data-feather="message-square"></i> Chatbot Assistant</a></li>
+                <li><a href="#"><i data-feather="calendar"></i> Academic Schedule</a></li>
+                <li><a href="#"><i data-feather="map-pin"></i> Campus Events</a></li>
+                <li><a href="#"><i data-feather="home"></i> Hostel Services</a></li>
+                <li><a href="#"><i data-feather="briefcase"></i> Placement Cell</a></li>
+                <li><a href="#"><i data-feather="compass"></i> Navigation Help</a></li>
+                <li><a href="#"><i data-feather="users"></i> Faculty Directory</a></li>
+                <li><a href="#"><i data-feather="bell"></i> Notifications</a></li>
+                <li><a href="#"><i data-feather="settings"></i> Settings</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <div class="status-dot"></div>
+                    <span>System Online</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- 2. Top Navbar -->
+            <header class="top-navbar">
+                <div class="search-bar">
+                    <i data-feather="search"></i>
+                    <input type="text" placeholder="Search for events, schedules, or queries..." />
+                </div>
+                
+                <div class="top-controls">
+                    <!-- Language Dropdown -->
+                    <div class="language-selector">
+                        <i data-feather="globe"></i>
+                        <select id="lang-select">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi (हिंदी)</option>
+                            <option value="mr">Marathi (मराठी)</option>
+                        </select>
+                    </div>
+
+                    <!-- Notification -->
+                    <button class="nav-btn notification-btn">
+                        <i data-feather="bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+
+                    <!-- User Profile -->
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=6c5ce7&color=fff&rounded=true" alt="User Profile">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">Superintendent</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                
+                <!-- 3. Main Hero Section (Chatbot) -->
+                <section class="hero-chatbot glass-card">
+                    <div class="chat-header">
+                        <div class="bot-info">
+                            <div class="bot-avatar">
+                                <i data-feather="cpu"></i>
+                            </div>
+                            <div>
+                                <h3>AI Core Assistant</h3>
+                                <p>Ready to help in English | हिंदी | मराठी</p>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button id="clear-chat" class="icon-btn" title="Clear Chat"><i data-feather="trash-2"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Messages dynamically added here -->
+                        <div class="message bot">
+                            <div class="bubble">
+                                Hello! I am your Multilingual Unimind Chatbot. How can I assist you today? 🎓
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="smart-suggestions">
+                        <button class="suggestion-chip">Today's timetable</button>
+                        <button class="suggestion-chip">Upcoming events</button>
+                        <button class="suggestion-chip">Find classroom</button>
+                        <button class="suggestion-chip">Hostel enquiry</button>
+                        <button class="suggestion-chip">Placement updates</button>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <button class="icon-btn mic-btn" title="Voice Input">
+                            <i data-feather="mic"></i>
+                        </button>
+                        <input type="text" id="chat-input" placeholder="Type your message here..." autocomplete="off">
+                        <button class="send-btn" id="send-btn">
+                            <i data-feather="send"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- 4. Right Side Quick Stats Panel -->
+                <section class="quick-stats">
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon purple"><i data-feather="users"></i></div>
+                        <div class="stat-data">
+                            <h4>Total Students Online</h4>
+                            <span class="counter" data-target="1245">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon blue"><i data-feather="book-open"></i></div>
+                        <div class="stat-data">
+                            <h4>Today's Classes</h4>
+                            <span class="counter" data-target="86">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon pink"><i data-feather="calendar"></i></div>
+                        <div class="stat-data">
+                            <h4>Upcoming Events</h4>
+                            <span class="counter" data-target="12">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon green"><i data-feather="trending-up"></i></div>
+                        <div class="stat-data">
+                            <h4>Placement Drives</h4>
+                            <span class="counter" data-target="4">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon red"><i data-feather="alert-circle"></i></div>
+                        <div class="stat-data">
+                            <h4>Hostel Complaints</h4>
+                            <span class="counter" data-target="18">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon orange"><i data-feather="clock"></i></div>
+                        <div class="stat-data">
+                            <h4>Faculty Available</h4>
+                            <span class="counter" data-target="42">0</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Smart Features Section -->
+                <section class="smart-features glass-card">
+                    <div class="section-title">
+                        <h3>Campus Smart Features</h3>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feat-icon"><i data-feather="calendar"></i></div>
+                            <h5>Schedule Recommendation</h5>
+                            <p>AI-optimized timings</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feat-icon"><i data-feather="navigation"></i></div>
+                            <h5>Campus Navigation</h5>
+                            <p>AR routing to classes</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feat-icon"><i data-feather="bell"></i></div>
+                            <h5>Event Reminder</h5>
+                            <p>Don't miss out</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feat-icon"><i data-feather="user-check"></i></div>
+                            <h5>Faculty Contact</h5>
+                            <p>Direct communication</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feat-icon"><i data-feather="file-text"></i></div>
+                            <h5>Exam Timetable</h5>
+                            <p>Updated schedules</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feat-icon"><i data-feather="check-square"></i></div>
+                            <h5>Attendance Tracker</h5>
+                            <p>Real-time stats</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. Multilingual Support Highlight -->
+                <section class="multilingual-highlight glass-card">
+                    <div class="lang-text">
+                        <h3>Seamless Multilingual Integration</h3>
+                        <p>Our autonomous AI naturally converses in multiple languages smoothly.</p>
+                    </div>
+                    <div class="lang-cards">
+                        <div class="lang-card active">
+                            <span class="lang-code">EN</span>
+                            <h4>English</h4>
+                        </div>
+                        <div class="lang-card">
+                            <span class="lang-code">HI</span>
+                            <h4>हिंदी</h4>
+                        </div>
+                        <div class="lang-card">
+                            <span class="lang-code">MR</span>
+                            <h4>मराठी</h4>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Initialize Feather Icons & attach custom script -->
+    <script>
+        feather.replace();
+    </script>
+    <script src="./dashboard.js"></script>
+</body>
+</html>
