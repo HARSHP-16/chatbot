@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Premium Mesh Background Blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container">
             <div class="navbar-brand">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,13 +44,14 @@
             <div class="hero-content reveal">
                 <span class="hero-badge">✨ AI Powered Multilingual Assistant</span>
                 <h1>Your Campus, Now Just a <span class="text-gradient">Conversation</span> Away</h1>
-                <p>A multilingual AI assistant that understands your queries and helps you take actions instantly.</p>
+                <p>A smart, multilingual AI assistant that understands your queries, provides real-time context, and helps you execute campus actions instantly.</p>
                 <div class="hero-actions">
                     <button class="btn btn-primary" id="tryAIBtn" onclick="document.getElementById('toggleChatBtn').click();">Try UniMind AI</button>
-                    <a href="login.html" class="btn btn-outline">Login to Dashboard</a>
+                    <a href="login.html" class="btn btn-outline">Dashboard Login</a>
                 </div>
+                <div class="trust-text" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; opacity: 0.8;">No signup required for demo.</div>
             </div>
-            <div class="hero-graphic reveal">
+            <div class="hero-graphic reveal" style="transition-delay: 0.2s">
                 <!-- Floating Elements -->
                 <div class="float-card float-1">📅 DBMS Exam at 10 AM</div>
                 <div class="float-card float-2">🔔 2 New Announcements</div>
@@ -62,8 +70,8 @@
                     <div class="chat-message msg-bot">
                         <div class="chat-bubble">You have DBMS at 10 AM in Room 304.</div>
                     </div>
-                    <div class="chat-message msg-bot" style="animation-delay: 2s; opacity: 0; animation: slideUp 0.5s ease-out 2s forwards;">
-                        <div class="chat-bubble">
+                    <div class="chat-message msg-bot" style="animation-delay: 2.8s; opacity: 0; animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 2.8s forwards;">
+                        <div class="chat-bubble flex">
                             <div class="typing-dots">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -81,60 +89,60 @@
         <div class="container">
             <div class="section-header reveal">
                 <h2>Ask <span class="text-gradient">Anything</span></h2>
-                <p>From simple queries to complex actions, UniMind AI has all the answers.</p>
+                <p>From simple schedule queries to complex workflow actions, UniMind AI has the natural language intelligence to guide you.</p>
             </div>
             <div class="grid">
                 <div class="card ask-card reveal" onclick="document.querySelector('#chatInput').value='When is my exam?'; document.getElementById('toggleChatBtn').click();">
                     <div class="card-icon">🎓</div>
                     <h3>Exam Queries</h3>
-                    <p>"When is my exam?"</p>
+                    <p>"When is my upcoming exam?"</p>
                 </div>
                 <div class="card ask-card reveal" style="transition-delay: 0.1s" onclick="document.querySelector('#chatInput').value='Show today\'s timetable'; document.getElementById('toggleChatBtn').click();">
                     <div class="card-icon">📅</div>
                     <h3>Schedules</h3>
-                    <p>"Show today's timetable"</p>
+                    <p>"Show today's engineering timetable"</p>
                 </div>
                 <div class="card ask-card reveal" style="transition-delay: 0.2s" onclick="document.querySelector('#chatInput').value='Raise hostel complaint'; document.getElementById('toggleChatBtn').click();">
                     <div class="card-icon">🛠️</div>
                     <h3>Complaints</h3>
-                    <p>"Raise hostel complaint"</p>
+                    <p>"Raise a Wi-Fi maintenance complaint"</p>
                 </div>
                 <div class="card ask-card reveal" style="transition-delay: 0.3s" onclick="document.querySelector('#chatInput').value='Any announcements?'; document.getElementById('toggleChatBtn').click();">
                     <div class="card-icon">📢</div>
                     <h3>Announcements</h3>
-                    <p>"Any new updates?"</p>
+                    <p>"Any new placement updates?"</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Smart Capabilities Section -->
-    <section class="section" style="background: rgba(255,255,255,0.5)">
+    <section class="section" style="background: rgba(255,255,255,0.3)">
         <div class="container">
             <div class="section-header reveal">
                 <h2>Smart AI <span class="text-gradient">Capabilities</span></h2>
-                <p>Powered by advanced natural language processing tailored for academic domains.</p>
+                <p>Powered by advanced natural language processing tailored specifically for modern academic domains.</p>
             </div>
             <div class="grid">
                 <div class="card reveal">
                     <div class="card-icon">🌐</div>
-                    <h3>Multilingual Support</h3>
-                    <p>Interact comfortably in English, Hindi, or Marathi seamlessly.</p>
+                    <h3>Multilingual Core</h3>
+                    <p>Interact comfortably in English, Hindi, or Marathi seamlessly without switching apps.</p>
                 </div>
                 <div class="card reveal" style="transition-delay: 0.1s">
                     <div class="card-icon">🧠</div>
                     <h3>Context-Aware Memory</h3>
-                    <p>Follow-up on queries naturally without repeating yourself.</p>
+                    <p>Follow-up naturally. The AI remembers what you were talking about sentences ago.</p>
                 </div>
                 <div class="card reveal" style="transition-delay: 0.2s">
                     <div class="card-icon">🎯</div>
                     <h3>Intent Detection</h3>
-                    <p>Accurately identifies exactly what you need in real-time.</p>
+                    <p>Accurately routes complex conversational sentences straight to the correct campus actions.</p>
                 </div>
                 <div class="card reveal" style="transition-delay: 0.3s">
                     <div class="card-icon">⚡</div>
-                    <h3>Smart Actions</h3>
-                    <p>Register complaints, fetch files, and trigger backend workflows instantly.</p>
+                    <h3>Smart Workflows</h3>
+                    <p>Don't just get answers. Register complaints, fetch PDF files, and trigger backend events.</p>
                 </div>
             </div>
         </div>
@@ -145,49 +153,50 @@
         <div class="container">
             <div class="section-header reveal">
                 <h2>How It <span class="text-gradient">Works</span></h2>
+                <p>A seamless, highly guided flow designed to get you your answers without any friction.</p>
             </div>
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); text-align: center;">
-                <div class="reveal">
-                    <div class="card-icon" style="margin: 0 auto 1.5rem auto;">1</div>
-                    <h3 style="margin-bottom: 0.5rem">Ask in any language</h3>
-                    <p class="text-muted">Type naturally.</p>
+            <div class="flow-grid">
+                <div class="flow-step reveal">
+                    <div class="card-icon">1</div>
+                    <h3 style="margin-bottom: 0.75rem; font-size: 1.2rem;">Ask Normally</h3>
+                    <p class="text-muted">Type naturally in your preferred language using everyday vocabulary.</p>
                 </div>
-                <div class="reveal" style="transition-delay: 0.1s">
-                    <div class="card-icon" style="margin: 0 auto 1.5rem auto;">2</div>
-                    <h3 style="margin-bottom: 0.5rem">AI intent matching</h3>
-                    <p class="text-muted">Processes your goal.</p>
+                <div class="flow-step reveal" style="transition-delay: 0.15s">
+                    <div class="card-icon">2</div>
+                    <h3 style="margin-bottom: 0.75rem; font-size: 1.2rem;">Intent Processing</h3>
+                    <p class="text-muted">The AI maps your input against campus domains like Exams or Finance.</p>
                 </div>
-                <div class="reveal" style="transition-delay: 0.2s">
-                    <div class="card-icon" style="margin: 0 auto 1.5rem auto;">3</div>
-                    <h3 style="margin-bottom: 0.5rem">Fetch Data</h3>
-                    <p class="text-muted">Connects to database.</p>
+                <div class="flow-step reveal" style="transition-delay: 0.3s">
+                    <div class="card-icon">3</div>
+                    <h3 style="margin-bottom: 0.75rem; font-size: 1.2rem;">Data Fetch</h3>
+                    <p class="text-muted">Live synchronization with the university databases pulls exact answers.</p>
                 </div>
-                <div class="reveal" style="transition-delay: 0.3s">
-                    <div class="card-icon" style="margin: 0 auto 1.5rem auto;">4</div>
-                    <h3 style="margin-bottom: 0.5rem">Smart Response</h3>
-                    <p class="text-muted">Answers and acts.</p>
+                <div class="flow-step reveal" style="transition-delay: 0.45s">
+                    <div class="card-icon">4</div>
+                    <h3 style="margin-bottom: 0.75rem; font-size: 1.2rem;">Smart Resolution</h3>
+                    <p class="text-muted">Receive a highly contextual response or a direct confirmation of action.</p>
                 </div>
             </div>
             
-            <div class="reveal" style="text-align: center; margin-top: 4rem;">
-                <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">Start Talking Now</h3>
-                <button class="btn btn-primary" onclick="document.getElementById('toggleChatBtn').click();" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Try UniMind AI</button>
+            <div class="reveal" style="text-align: center; margin-top: 5rem;">
+                <h3 style="font-size: 2.25rem; margin-bottom: 2rem;">Ready to experience a smarter campus?</h3>
+                <button class="btn btn-primary" onclick="document.getElementById('toggleChatBtn').click();" style="font-size: 1.15rem; padding: 1.15rem 3rem;">Start Talking Now</button>
             </div>
         </div>
     </section>
 
     <!-- Floating Chatbot Plugin -->
     <button class="chatbot-trigger" id="toggleChatBtn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
     </button>
 
     <div class="chatbot-panel" id="chatbotPanel">
         <div class="chat-header">
             <div class="chat-title">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
                 UniMind AI
             </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
                 <select class="lang-select" id="langSelect">
                     <option value="en">EN</option>
                     <option value="hi">HI</option>
@@ -198,19 +207,19 @@
         </div>
         <div class="chat-body" id="chatBody">
             <div class="chat-message msg-bot">
-                <div class="chat-bubble">Hello! I am UniMind AI. How can I help you regarding campus, exams, or anything else?</div>
+                <div class="chat-bubble">Hello! I am UniMind AI. How can I intelligently assist you today?</div>
             </div>
         </div>
         <div class="chat-input-area">
             <div class="prompt-suggestions">
-                <span class="prompt-chip">Exam kab hai?</span>
-                <span class="prompt-chip">Show timetable</span>
-                <span class="prompt-chip">Raise complaint</span>
+                <span class="prompt-chip">When is my exam?</span>
+                <span class="prompt-chip">WiFi complaint</span>
+                <span class="prompt-chip">Today's classes</span>
             </div>
-            <div class="input-wrapper" style="margin-top: 0.5rem;">
+            <div class="input-wrapper" style="margin-top: 0.75rem;">
                 <input type="text" id="chatInput" placeholder="Ask anything..." autocomplete="off">
                 <button id="sendBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 </button>
             </div>
         </div>

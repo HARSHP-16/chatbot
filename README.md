@@ -1,82 +1,42 @@
-# CampusCopilot (AI Agent Module)
+# UniMind AI – Multilingual AI Assistant
 
-This repository contains the CampusCopilot project code. 
-*Note: The Frontend and Database integrations are handled in parallel by the wider team. This instruction set focuses strictly on the modular **AI Agent Layer** in the backend.*
+## Overview
+UniMind AI is a multilingual AI-powered assistant for academic institutions that enables students, faculty, and administrators to interact with campus services using natural language. It serves as a centralized smart chatbot platform designed to effortlessly navigate and query complex campus systems.
 
-## 🌟 Key Features
-- **RAG Architecture:** Leverages Retrieval-Augmented Generation to restrict answers strictly to the provided data domain.
-- **Role Contexting:** Provides differential responses based on whether the caller specifies the user as a "student" or "faculty".
-- **Multilingual NLP:** Uses Gemini's underlying capabilities to respond natively in the language queried.
+## My Contribution (Frontend Development)
+As a team project, my primary responsibility and focus was solely on the frontend presentation and user experience:
+- **Designed and developed full frontend UI:** Constructed an elite-quality aesthetic without relying on external UI frameworks.
+- **Built landing page with modern SaaS design:** Applied an ultra-modern styling utilizing mesh gradients, depth, and glassmorphism.
+- **Created chatbot interface:** Deployed the interactive Chatbot widget including the UI and contextually simulated AI responses.
+- **Developed authentication pages:** Constructed the `login.html` and `register.html` pages mapped with explicit role selection elements (Student, Faculty, Admin).
+- **Implemented animations, transitions, and responsive layout:** Engineered advanced cubic-bezier micro-interactions, layout physics, and intersection reveals.
 
-## 🏗️ Tech Stack
-- **AI Backend:** Python, Google Gemini SDK (`google-generativeai`)
-- **Environment Management:** `python-dotenv`
+## Frontend Features
+- Light-themed modern UI
+- Floating chatbot interface
+- Smooth animations and micro-interactions
+- Role-based login/register UI
+- Chat simulation with typing effect
+- Responsive design for all devices
 
-## 🚀 AI Module Setup
-
-### 1. Pre-requisites
-- Python 3.9+
-- Gemini API Key (Studio)
-
-### 2. Environment Initialization
-Navigate into the backend and setup your python environment:
-```bash
-cd backend
-python -m venv myenv
-
-# Activate venv:
-# Windows: .\myenv\Scripts\Activate.ps1
-# Mac/Linux: source myenv/bin/activate
-
-pip install -r requirements.txt
-```
-
-### 3. API Configuration
-Create a `.env` file inside `/backend` and place your Gemini Key:
+## Folder Structure (Frontend Only)
 ```text
-GEMINI_API_KEY=your_key_here
+frontend/
+  index.html
+  login.html
+  register.html
+  css/style.css
+  js/app.js
 ```
 
-### 4. Direct Execution Testing
-You can standalone-test the AI Logic without the Flask routes or Frontend.
-```bash
-python services/ai_agent.py
-```
+## How to Run
+- Simply open `index.html` natively in any browser.
+- **OR** Open the project directory via VSCode and use Live Server.
 
-## 📁 Repository Structure
-- `/frontend` - HTML/CSS/JS presentation layer.
-- `/backend` - Flask REST server, routes, and Gemini inference.
-  - `/data/campus_data.json` - Local JSON store for relevant campus data.
-  - `/utils/data_manager.py` - Thread-safe handler for data insertion/loading.
-  - `/services/retrieval.py` - Keyword scoring and sorting system.
-  - `/services/ai_agent.py` - Core AI logic engine.
-- `/docs` - Architecture and API details.
+## Future Scope 
+- Backend API integration
+- Real AI/LLM integration
+- Database connectivity
 
-## 🗄️ Data Management API
-
-The project uses a clean JSON-based data management module (over basic string arrays) to serve relevant context to the Gemini AI models. 
-
-You can programmatically add new information dynamically using the Admin endpoint.
-
-**Add Data Entry:** `POST /api/admin/update-data` (Make sure to register the admin blueprint `admin_bp` in `backend/app.py`).
-
-**Payload:**
-```json
-{
-  "question": "library timing on weekends",
-  "answer": "9 AM to 5 PM",
-  "category": "library",
-  "updated_at": "2026-04-04"
-}
-```
-
-## 🔌 API Implementation Guide (For Teammates)
-To use the AI layer in your own routing files (e.g. inside `app.py`), simply import the agent:
-
-```python
-from services.ai_agent import handle_query
-
-# Trigger the prompt chain securely
-response_text = handle_query(user_question="When are our exams?", role="student")
-print(response_text)
-```
+## Team Note
+*Please note that the backend logic, database, and true API functionalities are being developed explicitly by other team members.*
