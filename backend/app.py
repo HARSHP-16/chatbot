@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 # override=True ensures .env always wins over system environment variables
 load_dotenv(override=True)
 
-from routes.chat_routes import chat_bp
-from routes.auth_routes import auth_bp
-from routes.admin import admin_bp
+from backend.routes.chat_routes import chat_bp
+from backend.routes.auth_routes import auth_bp
+from backend.routes.admin import admin_bp
 
 # Serve the frontend folder as static files
 FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'frontend')
@@ -23,7 +23,7 @@ app.config['PREFERRED_URL_SCHEME'] = 'https' if app.config['ENV'] == 'production
 
 # CORS configuration - restrict in production
 if app.config['ENV'] == 'production':
-    CORS(app, resources={r"/api/*": {"origins": ["https://unimind-chatbot.azurewebsites.net"]}})
+    CORS(app, resources={r"/api/*": {"origins": ["https://campus-bot.azurewebsites.net"]}})
 else:
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 

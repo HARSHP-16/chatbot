@@ -2,7 +2,7 @@ import os
 import time
 from groq import Groq
 from dotenv import load_dotenv
-from utils.prompt import build_prompt
+from backend.utils.prompt import build_prompt
 
 # override=True ensures .env always wins over system environment variables
 load_dotenv(override=True)
