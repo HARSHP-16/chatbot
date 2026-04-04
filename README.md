@@ -1,49 +1,47 @@
-# CampusCopilot
+# CampusCopilot (AI Agent Module)
 
-CampusCopilot is a production-ready, multilingual AI-powered campus assistant web application. It helps students and faculty interact with campus data (timetable, events, faculty, rooms, etc.) using natural language and supports smart actions.
+This repository contains the CampusCopilot project code. 
+*Note: The Frontend and Database integrations are handled in parallel by the wider team. This instruction set focuses strictly on the modular **AI Agent Layer** in the backend.*
 
 ## 🌟 Key Features
-- **AI Chat Interface:** ChatGPT-like interface powered by the Gemini API for natural conversation.
-- **Multilingual Support:** English, Hindi, and Marathi parsing and answering capabilities.
-- **Campus Data Integration:** Potential queries on Timetables, Events, and Faculty profiles.
-- **Lightweight & Fast:** Built entirely using Vanilla HTML, CSS, JavaScript (no bundler) on top of Python Flask.
+- **RAG Architecture:** Leverages Retrieval-Augmented Generation to restrict answers strictly to the provided data domain.
+- **Role Contexting:** Provides differential responses based on whether the caller specifies the user as a "student" or "faculty".
+- **Multilingual NLP:** Uses Gemini's underlying capabilities to respond natively in the language queried.
 
 ## 🏗️ Tech Stack
-- **Frontend:** Vanilla HTML, CSS, JavaScript
-- **Backend:** Python + Flask
-- **AI:** Google Generative AI (Gemini Flash Model)
-- **Database:** MongoDB (PyMongo) - Optional, for extending into profiles and memory
+- **AI Backend:** Python, Google Gemini SDK (`google-generativeai`)
+- **Environment Management:** `python-dotenv`
 
-## 🚀 Setup Instructions
+## 🚀 AI Module Setup
 
 ### 1. Pre-requisites
 - Python 3.9+
-- MongoDB (Running locally or via Atlas)
-- Gemini API Key
+- Gemini API Key (Studio)
 
-### 2. Backend Setup
+### 2. Environment Initialization
+Navigate into the backend and setup your python environment:
 ```bash
 cd backend
-python -m venv venv
+python -m venv myenv
 
 # Activate venv:
-# Windows: venv\Scripts\activate
-# Mac/Linux: source venv/bin/activate
+# Windows: .\myenv\Scripts\Activate.ps1
+# Mac/Linux: source myenv/bin/activate
 
 pip install -r requirements.txt
-
-# Create a .env file locally with GEMINI_API_KEY and MONGO_URI
-flask run
 ```
-Backend runs locally at `http://127.0.0.1:5000`
 
-### 3. Frontend Setup
+### 3. API Configuration
+Create a `.env` file inside `/backend` and place your Gemini Key:
+```text
+GEMINI_API_KEY=your_key_here
+```
+
+### 4. Direct Execution Testing
+You can standalone-test the AI Logic without the Flask routes or Frontend.
 ```bash
-# You can use any static server, e.g. python built-in server:
-cd frontend
-python -m http.server 5500
+python services/ai_agent.py
 ```
-Then navigate to `http://127.0.0.1:5500`
 
 ## 📁 Repository Structure
 - `/frontend` - HTML/CSS/JS presentation layer.
@@ -51,6 +49,7 @@ Then navigate to `http://127.0.0.1:5500`
   - `/data/campus_data.json` - Local JSON store for relevant campus data.
   - `/utils/data_manager.py` - Thread-safe handler for data insertion/loading.
   - `/services/retrieval.py` - Keyword scoring and sorting system.
+  - `/services/ai_agent.py` - Core AI logic engine.
 - `/docs` - Architecture and API details.
 
 ## 🗄️ Data Management API
@@ -69,4 +68,15 @@ You can programmatically add new information dynamically using the Admin endpoin
   "category": "library",
   "updated_at": "2026-04-04"
 }
+```
+
+## 🔌 API Implementation Guide (For Teammates)
+To use the AI layer in your own routing files (e.g. inside `app.py`), simply import the agent:
+
+```python
+from services.ai_agent import handle_query
+
+# Trigger the prompt chain securely
+response_text = handle_query(user_question="When are our exams?", role="student")
+print(response_text)
 ```
