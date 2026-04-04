@@ -12,7 +12,7 @@ from routes.auth_routes import auth_bp
 from routes.admin import admin_bp
 
 # Serve the frontend folder as static files
-FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'frontend')
+FRONTEND_DIR = os.path.join(os.getcwd(), 'frontend')
 
 app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path='')
 
