@@ -1,68 +1,49 @@
-import json
-import os
-import re
+from utils.data_manager import load_data
 
-# Resolve absolute path to campus_data.json based on the current file's location
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_PATH = os.path.join(BASE_DIR, 'data', 'campus_data.json')
-
-def load_data():
-    """Loads campus data from the JSON file."""
-    try:
-        with open(DATA_PATH, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"Error loading campus data: {e}")
-        return []
-
-def retrieve_context(query, top_k=2):
+def get_relevant_data(query, top_k=3):
     """
-    Implements a simple keyword-based search over the campus JSON data.
-    Returns the top 'top_k' relevant answers as a formatted text block.
+    Retrieve top relevant campus data for a given query.
+    Case-insensitive search, matches query with question field, prioritizes latest data.
     """
     if not query:
-        return ""
-
+        return []
+        
     data = load_data()
     if not data:
-        return ""
-
-    # Normalize query for basic keyword matching
-    normalized_query = query.lower()
-    query_words = set(re.findall(r'\w+', normalized_query))
+        return []
+        
+    query_lower = query.lower().strip()
+    query_words = set(query_lower.split())
     
     scored_items = []
     
     for item in data:
+        question = item.get('question', '').lower()
+        question_words = set(question.split())
+        
         score = 0
-        topic = item.get('topic', '').lower()
-        keywords = [k.lower() for k in item.get('keywords', [])]
         
-        # Exact topic match
-        if topic in query_words:
-            score += 5
+        # Exact match of the entire query in the question
+        if query_lower in question:
+            score += 10
             
-        # Keyword matches
-        for kw in keywords:
-            if kw in query_words:
-                score += 2
-                
-        # Substring match in the content
-        content = item.get('content', '').lower()
-        for qw in query_words:
-            if len(qw) > 3 and qw in content:
-                score += 1
-
-        if score > 0:
-            scored_items.append({"score": score, "content": item['content']})
-
-    # Sort results by score, descending
-    scored_items.sort(key=lambda x: x['score'], reverse=True)
-    
-    # Extract top answers
-    top_results = [item['content'] for item in scored_items[:top_k]]
-    
-    if not top_results:
-        return ""
+        # Word level matching
+        word_overlaps = len(query_words.intersection(question_words))
+        score += word_overlaps * 2
         
-    return "\n\n".join(top_results)
+        if score > 0:
+            scored_items.append({
+                'item': item,
+                'score': score
+            })
+            
+    # Sort primarily by score (descending), secondarily by latest date (descending)
+    # The updated_at format is YYYY-MM-DD so simple string comparison works perfectly for sorting
+    scored_items.sort(
+        key=lambda x: (x['score'], x['item'].get('updated_at', '0000-00-00')), 
+        reverse=True
+    )
+    
+    # Return top 2-3 answers as requested
+    top_results = [result['item'] for result in scored_items[:top_k]]
+    return top_results

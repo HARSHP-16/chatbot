@@ -48,4 +48,25 @@ Then navigate to `http://127.0.0.1:5500`
 ## 📁 Repository Structure
 - `/frontend` - HTML/CSS/JS presentation layer.
 - `/backend` - Flask REST server, routes, and Gemini inference.
+  - `/data/campus_data.json` - Local JSON store for relevant campus data.
+  - `/utils/data_manager.py` - Thread-safe handler for data insertion/loading.
+  - `/services/retrieval.py` - Keyword scoring and sorting system.
 - `/docs` - Architecture and API details.
+
+## 🗄️ Data Management API
+
+The project uses a clean JSON-based data management module (over basic string arrays) to serve relevant context to the Gemini AI models. 
+
+You can programmatically add new information dynamically using the Admin endpoint.
+
+**Add Data Entry:** `POST /api/admin/update-data` (Make sure to register the admin blueprint `admin_bp` in `backend/app.py`).
+
+**Payload:**
+```json
+{
+  "question": "library timing on weekends",
+  "answer": "9 AM to 5 PM",
+  "category": "library",
+  "updated_at": "2026-04-04"
+}
+```
