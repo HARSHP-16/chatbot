@@ -1,5 +1,11 @@
-Flask==3.0.0
-Flask-Cors==4.0.0
-python-dotenv==1.0.0
-google-generativeai==0.8.3
-pymongo==4.10.1
+# Flask framework (if needed for API exposure later by teammates)
+flask
+
+# Used for reading API keys securely from .env
+python-dotenv
+
+# Google Gemini API SDK
+google-generativeai
+
+# For cross-origin requests
+flask-cors

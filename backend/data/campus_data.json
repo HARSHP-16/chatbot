@@ -1,0 +1,20 @@
+[
+  {
+    "question": "exam form last date",
+    "answer": "15 April",
+    "category": "exam",
+    "updated_at": "2026-04-04"
+  },
+  {
+    "question": "hostel curfew timing",
+    "answer": "10:00 PM for all students",
+    "category": "hostel",
+    "updated_at": "2026-04-03"
+  },
+  {
+    "question": "midterm exams schedule",
+    "answer": "From October 15th to October 25th",
+    "category": "exam",
+    "updated_at": "2026-04-01"
+  }
+]
