@@ -1,51 +1,42 @@
-# CampusCopilot
+# UniMind AI – Multilingual AI Assistant
 
-CampusCopilot is a production-ready, multilingual AI-powered campus assistant web application. It helps students and faculty interact with campus data (timetable, events, faculty, rooms, etc.) using natural language and supports smart actions.
+## Overview
+UniMind AI is a multilingual AI-powered assistant for academic institutions that enables students, faculty, and administrators to interact with campus services using natural language. It serves as a centralized smart chatbot platform designed to effortlessly navigate and query complex campus systems.
 
-## 🌟 Key Features
-- **AI Chat Interface:** ChatGPT-like interface powered by the Gemini API for natural conversation.
-- **Multilingual Support:** English, Hindi, and Marathi parsing and answering capabilities.
-- **Campus Data Integration:** Potential queries on Timetables, Events, and Faculty profiles.
-- **Lightweight & Fast:** Built entirely using Vanilla HTML, CSS, JavaScript (no bundler) on top of Python Flask.
+## My Contribution (Frontend Development)
+As a team project, my primary responsibility and focus was solely on the frontend presentation and user experience:
+- **Designed and developed full frontend UI:** Constructed an elite-quality aesthetic without relying on external UI frameworks.
+- **Built landing page with modern SaaS design:** Applied an ultra-modern styling utilizing mesh gradients, depth, and glassmorphism.
+- **Created chatbot interface:** Deployed the interactive Chatbot widget including the UI and contextually simulated AI responses.
+- **Developed authentication pages:** Constructed the `login.html` and `register.html` pages mapped with explicit role selection elements (Student, Faculty, Admin).
+- **Implemented animations, transitions, and responsive layout:** Engineered advanced cubic-bezier micro-interactions, layout physics, and intersection reveals.
 
-## 🏗️ Tech Stack
-- **Frontend:** Vanilla HTML, CSS, JavaScript
-- **Backend:** Python + Flask
-- **AI:** Google Generative AI (Gemini Flash Model)
-- **Database:** MongoDB (PyMongo) - Optional, for extending into profiles and memory
+## Frontend Features
+- Light-themed modern UI
+- Floating chatbot interface
+- Smooth animations and micro-interactions
+- Role-based login/register UI
+- Chat simulation with typing effect
+- Responsive design for all devices
 
-## 🚀 Setup Instructions
-
-### 1. Pre-requisites
-- Python 3.9+
-- MongoDB (Running locally or via Atlas)
-- Gemini API Key
-
-### 2. Backend Setup
-```bash
-cd backend
-python -m venv venv
-
-# Activate venv:
-# Windows: venv\Scripts\activate
-# Mac/Linux: source venv/bin/activate
-
-pip install -r requirements.txt
-
-# Create a .env file locally with GEMINI_API_KEY and MONGO_URI
-flask run
+## Folder Structure (Frontend Only)
+```text
+frontend/
+  index.html
+  login.html
+  register.html
+  css/style.css
+  js/app.js
 ```
-Backend runs locally at `http://127.0.0.1:5000`
 
-### 3. Frontend Setup
-```bash
-# You can use any static server, e.g. python built-in server:
-cd frontend
-python -m http.server 5500
-```
-Then navigate to `http://127.0.0.1:5500`
+## How to Run
+- Simply open `index.html` natively in any browser.
+- **OR** Open the project directory via VSCode and use Live Server.
 
-## 📁 Repository Structure
-- `/frontend` - HTML/CSS/JS presentation layer.
-- `/backend` - Flask REST server, routes, and Gemini inference.
-- `/docs` - Architecture and API details.
+## Future Scope 
+- Backend API integration
+- Real AI/LLM integration
+- Database connectivity
+
+## Team Note
+*Please note that the backend logic, database, and true API functionalities are being developed explicitly by other team members.*

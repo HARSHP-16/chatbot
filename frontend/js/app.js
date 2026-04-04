@@ -1,6 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll Reveal Animation
+    // Navbar Scroll Effect
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // Scroll Reveal Animation (Enhanced)
     const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: Stop observing once revealed for better performance
+                // revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    reveals.forEach(reveal => revealObserver.observe(reveal));
+
+    // Chatbot UI Toggle
     const toggleChatBtn = document.getElementById('toggleChatBtn');
     const chatbotPanel = document.getElementById('chatbotPanel');
     const closeChatBtn = document.getElementById('closeChatBtn');
@@ -10,21 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const langSelect = document.getElementById('langSelect');
     const promptChips = document.querySelectorAll('.prompt-chip');
 
-    // Observer for fade in scroll animations
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    reveals.forEach(reveal => revealObserver.observe(reveal));
-
-    // Chatbot UI Toggle
     if (toggleChatBtn && chatbotPanel && closeChatBtn) {
         toggleChatBtn.addEventListener('click', () => {
             chatbotPanel.classList.add('active');
+            if(chatInput) setTimeout(() => chatInput.focus(), 300);
         });
 
         closeChatBtn.addEventListener('click', () => {
@@ -38,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             roleBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            // Store selected role if needed (e.g., in a hidden input)
         });
     });
 
@@ -51,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (langSelect) {
         langSelect.addEventListener('change', (e) => {
             sessionMemory.language = e.target.value;
-            // Provide feedback on language change
             addBotMessage(getGreeting(sessionMemory.language));
         });
     }
@@ -78,18 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = chatInput.value.trim();
         if (!text) return;
 
-        // Add user message to UI
         addUserMessage(text);
         chatInput.value = '';
 
-        // Show typing indicator
         const typingId = showTypingIndicator();
 
-        // Simulate network delay
+        // Simulate network delay and processing
         setTimeout(() => {
             removeTypingIndicator(typingId);
             processBotResponse(text);
-        }, 1000 + Math.random() * 1000);
+        }, 1200 + Math.random() * 800);
     }
 
     function addUserMessage(text) {
@@ -113,8 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const msgDiv = document.createElement('div');
         msgDiv.className = 'chat-message msg-bot';
         msgDiv.id = id;
+        msgDiv.style.animation = "slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards";
         msgDiv.innerHTML = `
-            <div class="chat-bubble flex">
+            <div class="chat-bubble">
                 <div class="typing-dots">
                     <span class="dot"></span>
                     <span class="dot"></span>
@@ -129,11 +140,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function removeTypingIndicator(id) {
         const el = document.getElementById(id);
-        if (el) el.remove();
+        if (el) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(10px)';
+            setTimeout(() => el.remove(), 300);
+        }
     }
 
     function scrollToBottom() {
-        if(chatBody) chatBody.scrollTop = chatBody.scrollHeight;
+        if(chatBody) chatBody.scrollTo({
+            top: chatBody.scrollHeight,
+            behavior: 'smooth'
+        });
     }
 
     function escapeHTML(str) {
@@ -168,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function detectIntent(q) {
         if (/(hi|hello|hey|namaste|hello|hola|greeting)/i.test(q)) return 'greeting';
         if (/(exam|tests|mid-sem|mid sem|finals)/i.test(q)) return 'exam';
-        if (/(timetable|schedule|classes|lectures|dbms|subject)/i.test(q)) return 'timetable';
+        if (/(timetable|schedule|classes|lectures|dbms|subject|today|tomorrow)/i.test(q)) return 'timetable';
         if (/(announcement|news|update|event)/i.test(q)) return 'announcements';
         if (/(complaint|issue|wifi|hostel|cleaning|broken)/i.test(q)) return 'complaint';
         if (/(placement|jobs|internship|companies|recruitment)/i.test(q)) return 'placements';
@@ -181,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getGreeting(lang) {
         if (lang === 'hi') return "नमस्ते! मैं आपकी कैसे मदद कर सकता हूँ?";
         if (lang === 'mr') return "नमस्कार! मी तुम्हाला कशी मदत करू शकतो?";
-        return "Hello! How can I assist you today?";
+        return "Hello! How can I intelligently assist you today?";
     }
 
     function getResponseDict(intent, lang) {
@@ -229,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'navigation': {
                 'en': 'The Library is located behind the CS building. Walk straight past the fountain.',
                 'hi': 'पुस्तकालय सीएस भवन के पीछे स्थित है। फव्वारे के पार सीधे चलें।',
-                'mr': 'ग्रंथालय सीएस इमारतीच्या मागे आहे. कारंज्याच्या पलीकडे सरळ चालत जा.'
+                'mr': 'ग्रंथालय सीएस इमारतीच्या मागे ছুটি आहे. कारंज्याच्या पलीकडे सरळ चालत जा.'
             },
             'unknown': {
                 'en': "I'm sorry, I didn't quite catch that. Could you ask about exams, timetable, complaints, or faculty?",
@@ -239,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const fallback = {
-            'en': "I am still learning! Please contact the admin for this detail.",
+            'en': "I am still learning this specific workflow! Please contact the admin for these details.",
             'hi': "मैं अभी सीख रहा हूँ! कृपया इस विवरण के लिए व्यवस्थापक से संपर्क करें।",
             'mr': "मी अजूनही शिकत आहे! कृपया या तपशीलासाठी अ‍ॅडमिनशी संपर्क साधा."
         };
@@ -247,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (responses[intent] && responses[intent][lang]) {
             return responses[intent][lang];
         } else if (responses[intent] && responses[intent]['en']) {
-            // fallback to english
             return responses[intent]['en'];
         }
         
