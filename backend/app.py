@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 # override=True ensures .env always wins over system environment variables
 load_dotenv(override=True)
 
-from routes.chat_routes import chat_bp
-from routes.auth_routes import auth_bp
-from routes.admin import admin_bp
+from backend.routes.chat_routes import chat_bp
+from backend.routes.auth_routes import auth_bp
+from backend.routes.admin import admin_bp
 
 # Serve the frontend folder as static files
 FRONTEND_DIR = os.path.join(os.getcwd(), 'frontend')
