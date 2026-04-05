@@ -208,8 +208,19 @@ Add these repository secrets in GitHub:
 - `AZURE_TENANT_ID`
 - `AZURE_SUBSCRIPTION_ID`
 
+Or set a single JSON secret named `AZURE_CREDENTIALS` with this shape:
+
+```json
+{
+  "clientId": "<app-client-id>",
+  "clientSecret": "<app-client-secret>",
+  "subscriptionId": "<azure-subscription-id>",
+  "tenantId": "<entra-tenant-id>"
+}
+```
+
 You can get these values from your Azure service principal (or Microsoft Entra app registration used for deployment).
-The workflow in `.github/workflows/azure-deployment.yml` reads these secrets directly.
+The workflow in `.github/workflows/azure-deployment.yml` supports both formats and fails early if required secrets are missing.
 
 - **SSL Certificate Issues**: Azure App Service provides free certificates
 - **Startup Failures**: Check logs with `az webapp log tail`
