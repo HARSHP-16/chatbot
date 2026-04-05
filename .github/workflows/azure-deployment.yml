@@ -33,7 +33,7 @@ jobs:
         echo "No tests configured yet"
 
     - name: Upload artifact for deployment jobs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: python-app
         path: |
