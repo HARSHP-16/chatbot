@@ -1,0 +1,194 @@
+[
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "IT Semester 1 syllabus",
+    "content": "IT Sem 1 syllabus includes Engineering Mathematics 1, Engineering Physics, Basic Electrical Engineering, Engineering Graphics, and Programming Fundamentals.",
+    "keywords": ["it", "semester 1", "syllabus", "subjects"],
+    "chunk_id": 1
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "IT Semester 2 syllabus",
+    "content": "IT Sem 2 syllabus includes Engineering Mathematics 2, Engineering Chemistry, Basic Electronics, Data Structures Basics, and Professional Communication.",
+    "keywords": ["it", "semester 2", "syllabus", "subjects"],
+    "chunk_id": 2
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "IT Semester 3 syllabus",
+    "content": "IT Sem 3 syllabus includes Discrete Mathematics, Object Oriented Programming, Digital Logic Design, Computer Organization, and Database Management Systems.",
+    "keywords": ["it", "semester 3", "syllabus", "dbms"],
+    "chunk_id": 3
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "IT Semester 4 syllabus",
+    "content": "IT Sem 4 syllabus includes Operating Systems, Theory of Computation, Computer Networks, Software Engineering, and DBMS Lab.",
+    "keywords": ["it", "semester 4", "syllabus", "operating systems"],
+    "chunk_id": 4
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "IT Semester 5 syllabus",
+    "content": "IT Sem 5 syllabus includes Web Technology, Information Security, Data Analytics, Design and Analysis of Algorithms, and Mini Project 1.",
+    "keywords": ["it", "semester 5", "syllabus", "web technology"],
+    "chunk_id": 5
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "IT Semester 6 syllabus",
+    "content": "IT Sem 6 syllabus includes Cloud Computing, Artificial Intelligence, Mobile Application Development, DevOps Fundamentals, and Mini Project 2.",
+    "keywords": ["it", "semester 6", "syllabus", "cloud", "ai"],
+    "chunk_id": 6
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "IT Semester 7 syllabus",
+    "content": "IT Sem 7 syllabus includes Machine Learning, Big Data Processing, Elective 1, Elective 2, and Capstone Project Phase 1.",
+    "keywords": ["it", "semester 7", "syllabus", "machine learning"],
+    "chunk_id": 7
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "IT Semester 8 syllabus",
+    "content": "IT Sem 8 syllabus includes Internet of Things, Cyber Security Practices, Elective 3, Internship/Industrial Training, and Capstone Project Phase 2.",
+    "keywords": ["it", "semester 8", "syllabus", "iot", "internship"],
+    "chunk_id": 8
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "CS Semester 1 syllabus",
+    "content": "CS Sem 1 syllabus includes Engineering Mathematics 1, Engineering Physics, Problem Solving and Programming, Basic Mechanical Systems, and Workshop Practice.",
+    "keywords": ["cs", "semester 1", "syllabus", "subjects"],
+    "chunk_id": 9
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "CS Semester 2 syllabus",
+    "content": "CS Sem 2 syllabus includes Engineering Mathematics 2, Engineering Chemistry, Data Structures, Basic Electronics, and Communication Skills.",
+    "keywords": ["cs", "semester 2", "syllabus", "data structures"],
+    "chunk_id": 10
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "CS Semester 3 syllabus",
+    "content": "CS Sem 3 syllabus includes Discrete Structures, OOP with Java, Computer Architecture, Digital Electronics, and Database Systems.",
+    "keywords": ["cs", "semester 3", "syllabus", "java"],
+    "chunk_id": 11
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "CS Semester 4 syllabus",
+    "content": "CS Sem 4 syllabus includes Operating Systems, Design and Analysis of Algorithms, Computer Networks, Theory of Computation, and Algorithms Lab.",
+    "keywords": ["cs", "semester 4", "syllabus", "algorithms"],
+    "chunk_id": 12
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "CS Semester 5 syllabus",
+    "content": "CS Sem 5 syllabus includes Compiler Design, Microprocessors, Artificial Intelligence, Software Engineering, and Mini Project 1.",
+    "keywords": ["cs", "semester 5", "syllabus", "compiler"],
+    "chunk_id": 13
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "CS Semester 6 syllabus",
+    "content": "CS Sem 6 syllabus includes Machine Learning, Cloud Computing, Distributed Systems, Information Security, and Mini Project 2.",
+    "keywords": ["cs", "semester 6", "syllabus", "distributed systems"],
+    "chunk_id": 14
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "CS Semester 7 syllabus",
+    "content": "CS Sem 7 syllabus includes Big Data Analytics, Deep Learning, Elective 1, Elective 2, and Capstone Project Phase 1.",
+    "keywords": ["cs", "semester 7", "syllabus", "deep learning"],
+    "chunk_id": 15
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "CS Semester 8 syllabus",
+    "content": "CS Sem 8 syllabus includes Natural Language Processing, Blockchain Basics, Elective 3, Internship/Industrial Training, and Capstone Project Phase 2.",
+    "keywords": ["cs", "semester 8", "syllabus", "nlp", "blockchain"],
+    "chunk_id": 16
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "ENTC Semester 1 syllabus",
+    "content": "ENTC Sem 1 syllabus includes Engineering Mathematics 1, Engineering Physics, Basic Electrical Engineering, Engineering Graphics, and Communication Basics.",
+    "keywords": ["entc", "semester 1", "syllabus", "subjects"],
+    "chunk_id": 17
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "ENTC Semester 2 syllabus",
+    "content": "ENTC Sem 2 syllabus includes Engineering Mathematics 2, Engineering Chemistry, Electronic Devices, Basic Programming, and Workshop Practice.",
+    "keywords": ["entc", "semester 2", "syllabus", "electronic devices"],
+    "chunk_id": 18
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "ENTC Semester 3 syllabus",
+    "content": "ENTC Sem 3 syllabus includes Network Theory, Analog Electronics, Digital Electronics, Signals and Systems, and Electronic Measurement.",
+    "keywords": ["entc", "semester 3", "syllabus", "analog electronics"],
+    "chunk_id": 19
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "ENTC Semester 4 syllabus",
+    "content": "ENTC Sem 4 syllabus includes Microcontrollers, Control Systems, Analog Communication, Electromagnetics, and Communication Lab.",
+    "keywords": ["entc", "semester 4", "syllabus", "control systems"],
+    "chunk_id": 20
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "ENTC Semester 5 syllabus",
+    "content": "ENTC Sem 5 syllabus includes Digital Communication, VLSI Design, Embedded Systems, Linear Integrated Circuits, and Mini Project 1.",
+    "keywords": ["entc", "semester 5", "syllabus", "vlsi"],
+    "chunk_id": 21
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "ENTC Semester 6 syllabus",
+    "content": "ENTC Sem 6 syllabus includes Wireless Communication, Antenna and Wave Propagation, DSP, IoT for Electronics, and Mini Project 2.",
+    "keywords": ["entc", "semester 6", "syllabus", "wireless"],
+    "chunk_id": 22
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "ENTC Semester 7 syllabus",
+    "content": "ENTC Sem 7 syllabus includes Advanced Embedded Systems, Optical Communication, Elective 1, Elective 2, and Capstone Project Phase 1.",
+    "keywords": ["entc", "semester 7", "syllabus", "optical communication"],
+    "chunk_id": 23
+  },
+  {
+    "source": "temp-syllabus-all-branches-2026",
+    "category": "syllabus",
+    "section": "ENTC Semester 8 syllabus",
+    "content": "ENTC Sem 8 syllabus includes 5G Communication Systems, Industrial Automation, Elective 3, Internship/Industrial Training, and Capstone Project Phase 2.",
+    "keywords": ["entc", "semester 8", "syllabus", "5g", "automation"],
+    "chunk_id": 24
+  }
+]

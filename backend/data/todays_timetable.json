@@ -1,0 +1,8 @@
+[
+  {
+    "category": "timetable",
+    "question": "What is today's timetable? What is the schedule for Saturday, April 4, 2026?",
+    "answer": "Today (Saturday, April 4) you have a Hackathon Sprint starting at 10:00 AM, followed by Lunch Break at 1:00 PM, and the Final Project Pitch Presentations at 4:30 PM. Good luck!",
+    "source": "hackathon_schedule"
+  }
+]

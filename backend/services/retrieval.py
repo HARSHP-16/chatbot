@@ -9,6 +9,24 @@ _index_timestamp = 0
 def _tokenize(text):
     return re.findall(r"[a-zA-Z0-9]+", str(text).lower())
 
+
+def _extract_semester_number(text):
+    match = re.search(r"(?:sem|semester)\s*([1-8])\b", str(text).lower())
+    if match:
+        return match.group(1)
+    return None
+
+
+def _extract_branch(text):
+    lowered = str(text).lower()
+    if re.search(r"\bit\b|information\s+technology", lowered):
+        return "it"
+    if re.search(r"\bcs\b|computer\s+science", lowered):
+        return "cs"
+    if re.search(r"\bentc\b|electronics\s+and\s+telecommunication", lowered):
+        return "entc"
+    return None
+
 def get_relevant_data(query, top_k=40):
     """
     Retrieves and ranks relevant chunks from the campus dataset.
@@ -28,6 +46,8 @@ def get_relevant_data(query, top_k=40):
         "when", "where", "how", "can", "i", "we", "you", "it", "this", "that", "with", "from", "about"
     }
     query_words = set(w for w in _tokenize(query_lower) if w not in stop_words and len(w) > 1)
+    query_semester = _extract_semester_number(query_lower)
+    query_branch = _extract_branch(query_lower)
 
     if not query_words:
         return []
@@ -83,7 +103,27 @@ def get_relevant_data(query, top_k=40):
         # Higher score for exact phrase and stronger token overlap.
         overlap_score = len(overlap)
         phrase_bonus = 3 if query_lower in combined_text else 0
-        score = overlap_score + phrase_bonus
+
+        # Prefer exact semester matches when query is semester-specific.
+        semester_bonus = 0
+        if query_semester:
+            has_semester_phrase = (
+                f"semester {query_semester}" in combined_text
+                or f"sem {query_semester}" in combined_text
+            )
+            semester_bonus = 4 if has_semester_phrase else 0
+
+        # Prefer exact branch matches when query mentions branch.
+        branch_bonus = 0
+        if query_branch:
+            if query_branch == "it" and ("it" in token_set or "information technology" in combined_text):
+                branch_bonus = 2
+            elif query_branch == "cs" and ("cs" in token_set or "computer science" in combined_text):
+                branch_bonus = 2
+            elif query_branch == "entc" and ("entc" in token_set or "electronics and telecommunication" in combined_text):
+                branch_bonus = 2
+
+        score = overlap_score + phrase_bonus + semester_bonus + branch_bonus
         results.append((score, cache_item['item']))
 
     results.sort(key=lambda x: x[0], reverse=True)

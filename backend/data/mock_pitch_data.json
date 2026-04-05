@@ -1,0 +1,58 @@
+[
+    {
+      "category": "academic",
+      "section": "Grading System & Credits",
+      "question": "What is the grading system? How are CGPA and SGPA calculated?",
+      "answer": "The university follows a 10-point grading scale. To graduate, an engineering student must earn a minimum of 160 credits over 8 semesters. The SGPA is calculated at the end of each semester based on credit weighting, while the CGPA is the cumulative average of all semesters. A CGPA below 4.0 results in academic probation.",
+      "keywords": ["cgpa", "sgpa", "grading", "grades", "credits", "probation"],
+      "source": "academic_handbook_2026.pdf"
+    },
+    {
+      "category": "hostel",
+      "section": "Hostel Facilities & Complaints",
+      "question": "What facilities are in the hostel? How do I complain about Wi-Fi or maintenance?",
+      "answer": "Hostels are equipped with high-speed 500Mbps Wi-Fi, 24/7 solar water heaters, and common rooms with a TV and table tennis. If your Wi-Fi drops or a light fixture breaks, you can raise a ticket on the 'UniMind Hostel Portal' using your student ID. Maintenance resolves tickets within 24 hours.",
+      "keywords": ["hostel", "complaint", "wifi", "internet", "maintenance", "repair", "common room"],
+      "source": "hostel_handbook_2026.pdf"
+    },
+    {
+      "category": "scholarship",
+      "section": "Financial Aid & Grants",
+      "question": "How do I apply for scholarships or financial aid?",
+      "answer": "We offer the 'Merit-Cum-Means' scholarship. Students with a CGPA above 8.5 and a family income below ₹5 Lakhs per year are eligible for a 50% tuition fee waiver. Top 10 rankers of the university receive the 'President's Gold Grant', covering 100% of the tuition fees. Applications open in the first week of October.",
+      "keywords": ["scholarship", "financial aid", "waiver", "grant", "money", "concession"],
+      "source": "financial_department_circular.pdf"
+    },
+    {
+      "category": "transport",
+      "section": "Bus Routes and Passes",
+      "question": "How do I get a bus pass? Where do the buses run?",
+      "answer": "The Campus Express fleet runs on 4 core routes covering the entire city, with departures at 7:30 AM and returns at 5:15 PM. You can purchase a semester bus pass for ₹4,500 at the transport office in Block B. Bring your physical college ID card and a passport size photo.",
+      "keywords": ["transport", "bus", "pass", "route", "commute", "travel"],
+      "source": "transportation_guidelines.pdf"
+    },
+    {
+      "category": "events",
+      "section": "Clubs and Hackathons",
+      "question": "How do I join technical clubs? Are there hackathons here?",
+      "answer": "The university actively hosts events, notably the 'CodeStorm Annual Hackathon', which takes place every April! To join the technical clubs (like the AI & Robotics Club, GDSC, or the Open Source Society), watch out for the Club Fair in September. Club inductions require passing a basic aptitude and interview round.",
+      "keywords": ["clubs", "hackathon", "gdsc", "events", "coding", "robotics", "societies"],
+      "source": "student_affairs.pdf"
+    },
+    {
+      "category": "international",
+      "section": "Semester Exchange Program",
+      "question": "Can I do a semester abroad? What are the exchange programs?",
+      "answer": "Yes! The Global Immersion Program allows 3rd-year students to spend one semester abroad at partner universities in the USA, Germany, and Singapore. You need a minimum CGPA of 8.0, a valid passport, and proof of English proficiency (IELTS/TOEFL). The deadline to nominate yourself is November 30th of your 2nd year.",
+      "keywords": ["exchange", "abroad", "international", "program", "foreign", "partner university"],
+      "source": "global_immersion.pdf"
+    },
+    {
+      "category": "faculty",
+      "section": "Office Hours",
+      "question": "How do I meet professors outside of class? What are office hours?",
+      "answer": "Every faculty member holds 2 hours of 'Open Office Hours' per week where students can drop by without an appointment to discuss doubts, research papers, or project ideas. Check the faculty directory on the UniMind app to see your specific professor's timings and cabin block numbers.",
+      "keywords": ["faculty", "professors", "office hours", "meeting", "doubts", "cabin", "teachers"],
+      "source": "academic_policies.pdf"
+    }
+]

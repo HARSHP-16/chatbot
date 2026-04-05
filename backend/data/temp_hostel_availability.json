@@ -1,0 +1,34 @@
+[
+  {
+    "source": "temp-hostel-availability-2026",
+    "category": "hostel",
+    "section": "Hostel room availability overview",
+    "content": "Current hostel availability: Total hostel rooms are 1200. Occupied rooms are 1082. Remaining available rooms are 118.",
+    "keywords": ["hostel", "rooms", "remaining", "available", "vacant", "occupancy"],
+    "chunk_id": 1
+  },
+  {
+    "source": "temp-hostel-availability-2026",
+    "category": "hostel",
+    "section": "Boys hostel availability",
+    "content": "Boys hostel: Total rooms 700, occupied 646, remaining 54 rooms.",
+    "keywords": ["boys hostel", "rooms", "remaining", "available"],
+    "chunk_id": 2
+  },
+  {
+    "source": "temp-hostel-availability-2026",
+    "category": "hostel",
+    "section": "Girls hostel availability",
+    "content": "Girls hostel: Total rooms 500, occupied 436, remaining 64 rooms.",
+    "keywords": ["girls hostel", "rooms", "remaining", "available"],
+    "chunk_id": 3
+  },
+  {
+    "source": "temp-hostel-availability-2026",
+    "category": "hostel",
+    "section": "Hostel waiting list",
+    "content": "Hostel waiting list status: 37 students currently on waiting list. Priority is based on distance and category rules.",
+    "keywords": ["hostel", "waiting list", "students", "priority"],
+    "chunk_id": 4
+  }
+]

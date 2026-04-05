@@ -1,0 +1,50 @@
+[
+    {
+      "category": "hostel",
+      "section": "Rules and Queries",
+      "question": "What are the rules for the hostel? How do I apply for a hostel room?",
+      "answer": "Hostel rooms are allocated on a first-come, first-serve basis. Students must apply online via the campus portal by the 15th of July. Curfew timings are 9:30 PM on weekdays and 10:30 PM on weekends. Outside food deliveries are allowed only up to the main gate.",
+      "keywords": ["hostel", "room", "curfew", "food", "stay", "accommodation"],
+      "source": "hostel_handbook_2026.pdf"
+    },
+    {
+      "category": "fees",
+      "section": "Fee Structure and Deadlines",
+      "question": "What is the fee structure for this semester? When is the deadline?",
+      "answer": "The total tuition fee for the current semester is ₹65,000. Hostel and mess fees are an additional ₹35,000 per semester. The final deadline for all fee payments without late charges is August 10th. Late payments incur a fine of ₹500 per day.",
+      "keywords": ["fees", "cost", "tuition", "deadline", "fine", "late fee", "payment", "money"],
+      "source": "financial_department_circular.pdf"
+    },
+    {
+      "category": "placement",
+      "section": "Placement Drives",
+      "question": "Are there any upcoming placement drives or internships?",
+      "answer": "Yes, the Tech Placement Drive begins on September 1st. Companies like Google, Microsoft, and local startups will be participating. Students must have a minimum CGPA of 7.5 with no active backlogs to sit for the Tier-1 companies. Resume submission deadline to the Placement Cell is August 20th.",
+      "keywords": ["placement", "job", "internship", "drive", "companies", "cgpa", "resume"],
+      "source": "placement_cell_notice.pdf"
+    },
+    {
+      "category": "library",
+      "section": "Library Timing and Fines",
+      "question": "What are the library timings and book delay fines?",
+      "answer": "The central library is open from 8:00 AM to 11:00 PM on weekdays, and 9:00 AM to 5:00 PM on weekends. Students can borrow up to 4 books at a time for 14 days. The delay fine is ₹10 per day.",
+      "keywords": ["library", "books", "timing", "fine", "read", "borrow", "card"],
+      "source": "library_rules.pdf"
+    },
+    {
+      "category": "facilities",
+      "section": "Sports and Gym",
+      "question": "What sports facilities are available? Is there a gym?",
+      "answer": "The campus has a football field, basketball courts, and an indoor badminton arena. We also have a fully equipped gym which is open from 6:00 AM to 9:00 AM, and 5:00 PM to 8:00 PM. Gym access requires a ₹1000 annual subscription.",
+      "keywords": ["sports", "gym", "fitness", "football", "basketball", "facilities", "stadium"],
+      "source": "student_affairs.pdf"
+    },
+    {
+      "category": "general",
+      "section": "Holidays and Leaves",
+      "question": "What happens if I need an emergency medical leave?",
+      "answer": "For medical leaves exceeding 3 days, students must submit a certified doctor's medical certificate to their Head of Department within 5 days of returning. This ensures your attendance deficit is adjusted before final exams.",
+      "keywords": ["leave", "holiday", "medical", "attendance", "absent", "sick", "doctor"],
+      "source": "academic_policies.pdf"
+    }
+  ]

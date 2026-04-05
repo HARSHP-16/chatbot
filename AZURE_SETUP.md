@@ -197,6 +197,20 @@ az appservice plan update \
 
 ## ❓ Troubleshooting
 
+### GitHub Actions Login Error (SERVICE_PRINCIPAL)
+
+If deployment fails with:
+`Using auth-type: SERVICE_PRINCIPAL. Not all values are present... Ensure 'client-id' and 'tenant-id' are supplied.`
+
+Add these repository secrets in GitHub:
+
+- `AZURE_CLIENT_ID`
+- `AZURE_TENANT_ID`
+- `AZURE_SUBSCRIPTION_ID`
+
+You can get these values from your Azure service principal (or Microsoft Entra app registration used for deployment).
+The workflow in `.github/workflows/azure-deployment.yml` reads these secrets directly.
+
 - **SSL Certificate Issues**: Azure App Service provides free certificates
 - **Startup Failures**: Check logs with `az webapp log tail`
 - **CORS Errors**: Update origin in app.py CORS config

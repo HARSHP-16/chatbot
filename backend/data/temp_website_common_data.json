@@ -1,0 +1,162 @@
+[
+  {
+    "source": "temp-website-common-2026",
+    "category": "website",
+    "section": "Website purpose",
+    "content": "UniMind AI is a campus assistant website that helps students, faculty, and admins with timetable queries, events, hostel support, placement updates, notifications, and profile-based AI responses.",
+    "keywords": ["website", "unimind", "purpose", "campus assistant", "features"],
+    "chunk_id": 1
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "website",
+    "section": "Student modules",
+    "content": "Student-facing modules include dashboard chat assistant, academic schedule, campus events, hostel services, placement cell, navigation help, faculty directory, notifications, and profile settings.",
+    "keywords": ["student", "modules", "dashboard", "schedule", "notifications"],
+    "chunk_id": 2
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "website",
+    "section": "Faculty and admin portal",
+    "content": "Faculty and admin users can use the staff portal to post events, publish notifications, and update department-wise timetable rows.",
+    "keywords": ["faculty", "admin", "portal", "post events", "update timetable"],
+    "chunk_id": 3
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "website",
+    "section": "Role access",
+    "content": "Role behavior: students mainly consume data; faculty and admin can manage operational data from the staff portal.",
+    "keywords": ["role", "student", "faculty", "admin", "access"],
+    "chunk_id": 4
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "account",
+    "section": "Login flow",
+    "content": "Users can login from the login page with email and password. After successful login, they are redirected to dashboard.",
+    "keywords": ["login", "email", "password", "dashboard", "account"],
+    "chunk_id": 5
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "account",
+    "section": "Registration flow",
+    "content": "New users can register with name, email, password, and role. Password and confirm password must match.",
+    "keywords": ["register", "name", "email", "password", "role"],
+    "chunk_id": 6
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "account",
+    "section": "Logout behavior",
+    "content": "Logout clears local session data like campusUser, studentProfile, and chatSessionId, then redirects to home page.",
+    "keywords": ["logout", "session", "campusUser", "studentProfile", "chatSessionId"],
+    "chunk_id": 7
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "profile",
+    "section": "Student profile fields",
+    "content": "Student profile fields are name, email, department, age, and semester. These fields are used to personalize AI answers.",
+    "keywords": ["profile", "name", "department", "semester", "personalization"],
+    "chunk_id": 8
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "profile",
+    "section": "Profile completion",
+    "content": "Profile completion improves answer quality for department-specific timetable and notifications.",
+    "keywords": ["profile completion", "timetable", "notifications", "department"],
+    "chunk_id": 9
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "chatbot",
+    "section": "Chatbot memory",
+    "content": "The chatbot keeps short conversation history using a session id so follow-up questions can be answered with context.",
+    "keywords": ["chatbot", "memory", "session id", "follow-up", "history"],
+    "chunk_id": 10
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "chatbot",
+    "section": "Multilingual support",
+    "content": "The chatbot supports multiple Indian languages including English, Hindi, Marathi, Bengali, Tamil, Telugu, Gujarati, Kannada, Malayalam, Punjabi, Odia, Assamese, and Urdu.",
+    "keywords": ["language", "multilingual", "english", "hindi", "marathi"],
+    "chunk_id": 11
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "schedule",
+    "section": "Academic schedule view",
+    "content": "Academic schedule page can render department timetable in table format with day and time slots.",
+    "keywords": ["academic schedule", "table", "day", "time slots", "department"],
+    "chunk_id": 12
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "events",
+    "section": "Event publishing",
+    "content": "Staff can publish events with title, date, venue, audience, and description from the portal.",
+    "keywords": ["events", "publish", "title", "venue", "audience"],
+    "chunk_id": 13
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "notifications",
+    "section": "Notification publishing",
+    "content": "Staff can post notifications with title, audience, and message. Students can view relevant notifications.",
+    "keywords": ["notifications", "staff", "students", "audience", "message"],
+    "chunk_id": 14
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "hostel",
+    "section": "Hostel support",
+    "content": "Hostel services module includes room availability information and waiting list updates.",
+    "keywords": ["hostel", "room availability", "waiting list", "services"],
+    "chunk_id": 15
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "placement",
+    "section": "Placement module",
+    "content": "Placement module shows current drives, eligibility snapshots, and preparation activities.",
+    "keywords": ["placement", "drives", "eligibility", "module"],
+    "chunk_id": 16
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "support",
+    "section": "Technical requirement",
+    "content": "For best experience use a modern browser and stable internet so chat and API requests can complete.",
+    "keywords": ["browser", "internet", "api", "support"],
+    "chunk_id": 17
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "support",
+    "section": "Backend connectivity issue",
+    "content": "If chatbot says it cannot reach backend API, start Flask server and verify API base URL configuration.",
+    "keywords": ["backend", "api", "flask", "connection", "error"],
+    "chunk_id": 18
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "common",
+    "section": "Common greeting response",
+    "content": "For greetings, the assistant can respond casually and suggest asking timetable, events, hostel, placement, or notifications queries.",
+    "keywords": ["greeting", "common", "casual", "queries"],
+    "chunk_id": 19
+  },
+  {
+    "source": "temp-website-common-2026",
+    "category": "common",
+    "section": "Data freshness note",
+    "content": "Operational values like events, timetable rows, and notification announcements can change whenever faculty/admin post updates.",
+    "keywords": ["data", "freshness", "updates", "faculty", "admin"],
+    "chunk_id": 20
+  }
+]

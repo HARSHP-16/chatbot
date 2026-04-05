@@ -1,0 +1,146 @@
+[
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "college",
+    "section": "I2IT full form",
+    "content": "I2IT refers to International Institute of Information Technology, Pune.",
+    "keywords": ["i2it", "full form", "international institute of information technology", "pune"],
+    "chunk_id": 1
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "college",
+    "section": "College profile",
+    "content": "I2IT is an engineering-focused institute known for technology education, practical learning, and industry-oriented academic activities.",
+    "keywords": ["i2it", "college profile", "engineering", "technology", "practical learning"],
+    "chunk_id": 2
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "college",
+    "section": "Academic environment",
+    "content": "I2IT academic environment includes theory classes, practical labs, project work, and skill-oriented learning.",
+    "keywords": ["academics", "labs", "projects", "skill", "learning"],
+    "chunk_id": 3
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "departments",
+    "section": "Core departments",
+    "content": "Common engineering branches served in the website context include IT, CS, and ENTC modules for timetable and updates.",
+    "keywords": ["departments", "it", "cs", "entc", "branches"],
+    "chunk_id": 4
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "admissions",
+    "section": "Admission guidance",
+    "content": "For admission details, users should check official admission notices, eligibility criteria, and deadline updates from institute channels.",
+    "keywords": ["admission", "eligibility", "deadline", "notices"],
+    "chunk_id": 5
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "academics",
+    "section": "Semester planning",
+    "content": "Students are advised to keep semester, department, and profile data updated for accurate timetable and academic suggestions.",
+    "keywords": ["semester", "profile", "department", "timetable", "planning"],
+    "chunk_id": 6
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "academics",
+    "section": "Timetable usage",
+    "content": "The academic schedule module is used to view department-wise timetable in a structured table format.",
+    "keywords": ["timetable", "academic schedule", "table", "department-wise"],
+    "chunk_id": 7
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "events",
+    "section": "Campus events",
+    "content": "Campus events module provides technical, cultural, and academic event updates along with audience-based visibility.",
+    "keywords": ["events", "technical", "cultural", "audience"],
+    "chunk_id": 8
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "hostel",
+    "section": "Hostel information",
+    "content": "Hostel module provides occupancy-related information such as room availability and waiting-list status updates.",
+    "keywords": ["hostel", "rooms", "availability", "waiting list"],
+    "chunk_id": 9
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "placement",
+    "section": "Placement updates",
+    "content": "Placement section helps students track drives, eligibility snapshots, and preparation opportunities.",
+    "keywords": ["placement", "drives", "eligibility", "preparation"],
+    "chunk_id": 10
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "faculty",
+    "section": "Faculty directory",
+    "content": "Faculty directory module helps students identify academic contacts department-wise.",
+    "keywords": ["faculty", "directory", "department", "contacts"],
+    "chunk_id": 11
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "notifications",
+    "section": "Announcements",
+    "content": "Notification module is used for institute announcements such as deadlines, holidays, and service updates.",
+    "keywords": ["notifications", "announcements", "deadlines", "holidays"],
+    "chunk_id": 12
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "portal",
+    "section": "Faculty and admin controls",
+    "content": "Faculty/admin portal supports posting events, posting notifications, and updating timetable rows for departments.",
+    "keywords": ["faculty", "admin", "portal", "update timetable", "post events"],
+    "chunk_id": 13
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "website",
+    "section": "Website role model",
+    "content": "Website role model: students consume information, while faculty/admin publish operational updates.",
+    "keywords": ["role", "student", "faculty", "admin", "website"],
+    "chunk_id": 14
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "website",
+    "section": "Login and profile",
+    "content": "Users can login/register, maintain student profile, and use personalized AI assistance based on stored profile fields.",
+    "keywords": ["login", "register", "profile", "personalized ai"],
+    "chunk_id": 15
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "support",
+    "section": "If chatbot cannot answer",
+    "content": "If the chatbot does not find relevant campus data, users should ask more specific department or module-focused questions.",
+    "keywords": ["chatbot", "specific question", "department", "module"],
+    "chunk_id": 16
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "support",
+    "section": "Backend issue note",
+    "content": "If chatbot shows backend connectivity issue, restart the backend API service and retry.",
+    "keywords": ["backend", "api", "restart", "issue"],
+    "chunk_id": 17
+  },
+  {
+    "source": "temp-i2it-common-2026",
+    "category": "common",
+    "section": "General greeting answer",
+    "content": "For casual greetings, the assistant can guide users toward timetable, events, hostel, placements, or notifications queries.",
+    "keywords": ["greeting", "common", "queries", "guide"],
+    "chunk_id": 18
+  }
+]
