@@ -82,7 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCount();
     });
 
-    // 2. Variables for Navbar and Sidebar
+    // 2. Chatbot Interaction Logic
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const suggestionChips = document.querySelectorAll('.suggestion-chip');
+    const clearChatBtn = document.getElementById('clear-chat');
+    const chatStatus = document.getElementById('chat-status');
     const liveDateEl = document.getElementById('live-date');
     const liveTimeEl = document.getElementById('live-time');
 
@@ -107,7 +113,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashAge = document.getElementById('dashAge');
     const dashSemester = document.getElementById('dashSemester');
 
+    const getOrCreateSessionId = () => {
+        const existing = localStorage.getItem('chatSessionId');
+        if (existing) return existing;
 
+        const generated = (window.crypto && window.crypto.randomUUID)
+            ? window.crypto.randomUUID()
+            : `chat-${Date.now()}-${Math.floor(Math.random() * 100000)}`;
+        localStorage.setItem('chatSessionId', generated);
+        return generated;
+    };
+
+    const chatSessionId = getOrCreateSessionId();
+
+    const updateStatus = (label, isBusy = false) => {
+        if (!chatStatus) return;
+        const statusDot = chatStatus.querySelector('.chat-status-dot');
+        const statusText = chatStatus.querySelector('span:last-child');
+        if (statusText) statusText.innerText = label;
+        if (statusDot) {
+            statusDot.classList.toggle('busy', isBusy);
+        }
+    };
+
+    const getTimeLabel = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     const updateDateTimeWidget = () => {
         const now = new Date();
@@ -187,6 +216,46 @@ document.addEventListener('DOMContentLoaded', () => {
         if (roleEl) roleEl.textContent = user.role ? user.role[0].toUpperCase() + user.role.slice(1) : 'Visitor';
     };
 
+    const appendMessage = (text, sender) => {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', sender);
+        
+        const bubbleDiv = document.createElement('div');
+        bubbleDiv.classList.add('bubble');
+        bubbleDiv.innerText = text;
+
+        const metaDiv = document.createElement('div');
+        metaDiv.classList.add('message-meta');
+        metaDiv.innerText = getTimeLabel();
+        
+        messageDiv.appendChild(bubbleDiv);
+        messageDiv.appendChild(metaDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    const showTyping = () => {
+        const typingDiv = document.createElement('div');
+        typingDiv.classList.add('message', 'bot');
+        typingDiv.id = `typing-${Date.now()}`;
+
+        const bubbleDiv = document.createElement('div');
+        bubbleDiv.classList.add('bubble');
+        bubbleDiv.innerText = '...';
+
+        typingDiv.appendChild(bubbleDiv);
+        chatMessages.appendChild(typingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return typingDiv.id;
+    };
+
+    const removeTyping = (id) => {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+    };
+
     const languageSwitchMessages = {
         en: 'Language switched to English.',
         hi: 'भाषा हिंदी में बदल गई है। (Language switched to Hindi)',
@@ -202,6 +271,94 @@ document.addEventListener('DOMContentLoaded', () => {
         as: 'ভাষা অসমীয়ালৈ সলনি কৰা হৈছে। (Language switched to Assamese)',
         ur: 'زبان اردو میں تبدیل کر دی گئی ہے۔ (Language switched to Urdu)',
     };
+
+    const handleSend = async () => {
+        const text = chatInput.value.trim();
+        if (text) {
+            // User message
+            appendMessage(text, 'user');
+            chatInput.value = '';
+            chatInput.disabled = true;
+            sendBtn.disabled = true;
+            updateStatus('Thinking...', true);
+
+            const typingId = showTyping();
+
+            const user = JSON.parse(localStorage.getItem('campusUser') || '{}');
+            const studentProfile = JSON.parse(localStorage.getItem('studentProfile') || '{}');
+            const role = user.role || 'student';
+            const language = (langSelect && langSelect.value) ? langSelect.value : 'en';
+
+            try {
+                const res = await fetch(`${API_BASE}/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        language,
+                        role,
+                        session_id: chatSessionId,
+                        user_profile: studentProfile,
+                    }),
+                });
+
+                const data = await res.json();
+                removeTyping(typingId);
+
+                if (res.ok) {
+                    appendMessage(data.reply || 'I did not receive a valid response.', 'bot');
+                    updateStatus('Online');
+                } else {
+                    appendMessage(`Error: ${data.error || 'Request failed.'}`, 'bot');
+                    updateStatus('Error');
+                }
+            } catch (error) {
+                removeTyping(typingId);
+                appendMessage('Cannot reach backend API. Start Flask server and retry.', 'bot');
+                updateStatus('Online');
+            } finally {
+                chatInput.disabled = false;
+                sendBtn.disabled = false;
+                chatInput.focus();
+            }
+        }
+
+                // Keep board numbers fresh if data is changed in another tab/page.
+                window.addEventListener('storage', refreshBoardStats);
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden) refreshBoardStats();
+                });
+    };
+
+    sendBtn.addEventListener('click', handleSend);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleSend();
+        }
+    });
+
+    suggestionChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            chatInput.value = chip.innerText;
+            handleSend();
+        });
+    });
+
+    clearChatBtn.addEventListener('click', () => {
+        chatMessages.innerHTML = `
+            <div class="message bot">
+                <div class="bubble">
+                    Chat history cleared. How can I assist you ?
+                </div>
+                <div class="message-meta">${getTimeLabel()}</div>
+            </div>`;
+
+        fetch(`${API_BASE}/chat/memory/clear`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ session_id: chatSessionId }),
+        }).catch(() => {});
+    });
 
     if (openProfileModalBtn) {
         openProfileModalBtn.addEventListener('click', openProfileModal);
@@ -277,7 +434,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Chatbot logic moved to chat.js
+        const botMsg = languageSwitchMessages[selectedLang] || languageSwitchMessages.en;
+
+        appendMessage(botMsg, "bot");
     });
 
     const setupLogout = () => {
@@ -294,6 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    updateStatus('Online');
     updateDateTimeWidget();
     setInterval(updateDateTimeWidget, 1000);
     hydrateUserProfile();

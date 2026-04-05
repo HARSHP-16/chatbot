@@ -27,6 +27,28 @@ function getStore(key, fallback) {
     }
 }
 
+async function syncToBackendKB(question, answer, category) {
+    const API_BASE = (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')
+        ? 'http://127.0.0.1:5000/api'
+        : `${window.location.origin}/api`;
+
+    try {
+        const payload = {
+            question: question,
+            answer: answer,
+            category: category,
+            updated_at: new Date().toISOString().split('T')[0]
+        };
+        await fetch(`${API_BASE}/admin/update-data`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+    } catch (e) {
+        console.error("Failed to sync to backend RAG:", e);
+    }
+}
+
 function setStore(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
@@ -76,18 +98,29 @@ function initEventForm(role) {
 
         const items = getStore(EVENTS_KEY, []);
         const timeVal = document.getElementById('eventTime').value;
+        const title = document.getElementById('eventTitle').value.trim();
+        const date = document.getElementById('eventDate').value;
+        const venue = document.getElementById('eventVenue').value.trim();
+        const audience = document.getElementById('eventAudience').value;
+        const description = document.getElementById('eventDescription').value.trim();
+
         items.unshift({
-            title: document.getElementById('eventTitle').value.trim(),
-            date: document.getElementById('eventDate').value,
+            title: title,
+            date: date,
             time: timeVal || '--',
-            venue: document.getElementById('eventVenue').value.trim(),
-            audience: document.getElementById('eventAudience').value,
-            description: document.getElementById('eventDescription').value.trim(),
+            venue: venue,
+            audience: audience,
+            description: description,
             postedBy: role,
             createdAt: new Date().toISOString(),
         });
 
         setStore(EVENTS_KEY, items);
+        
+        // Sync to AI knowledge base
+        const q = `What is the ${title} event about and when is it?`;
+        const a = `The event '${title}' is scheduled for ${date} at ${timeVal || '--'} in ${venue}. Target audience: ${audience}. Details: ${description}.`;
+        syncToBackendKB(q, a, 'events');
         form.reset();
         status.textContent = '✓ Event posted successfully!';
         status.style.color = '#15803d';
@@ -148,6 +181,11 @@ function initTimetableForm(role) {
         else store[dept].push(rowData);
 
         setStore(TIMETABLE_KEY, store);
+        
+        // Sync to AI knowledge base
+        const q = `What is the timetable for ${dept} on ${day}?`;
+        const a = `Here is the timetable for ${dept} on ${day}: Slot 1: ${slots[0] || 'Free'}, Slot 2: ${slots[1] || 'Free'}, Slot 3: ${slots[2] || 'Free'}, Slot 4: ${slots[3] || 'Free'}, Slot 5: ${slots[4] || 'Free'}.`;
+        syncToBackendKB(q, a, 'timetable');
         form.reset();
         status.textContent = '✓ Timetable updated successfully.';
         status.style.color = '#15803d';
@@ -163,15 +201,24 @@ function initNotificationForm(role) {
         e.preventDefault();
 
         const list = getStore(NOTIFICATIONS_KEY, []);
+        const title = document.getElementById('notifTitle').value.trim();
+        const audience = document.getElementById('notifAudience').value;
+        const message = document.getElementById('notifMessage').value.trim();
+
         list.unshift({
-            title: document.getElementById('notifTitle').value.trim(),
-            audience: document.getElementById('notifAudience').value,
-            message: document.getElementById('notifMessage').value.trim(),
+            title: title,
+            audience: audience,
+            message: message,
             postedBy: role,
             createdAt: new Date().toISOString(),
         });
 
         setStore(NOTIFICATIONS_KEY, list);
+
+        // Sync to AI knowledge base
+        const q = `Is there any notification regarding ${title}?`;
+        const a = `Yes, there is a notification titled '${title}'. Details: ${message}. Target audience: ${audience}.`;
+        syncToBackendKB(q, a, 'notifications');
         form.reset();
         status.textContent = '✓ Notification posted successfully.';
         status.style.color = '#15803d';

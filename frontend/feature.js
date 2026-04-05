@@ -2,6 +2,21 @@ const EVENTS_KEY = 'campusEventsStore';
 const TIMETABLE_KEY = 'campusTimetableStore';
 const NOTIFICATIONS_KEY = 'campusNotificationsStore';
 
+const DEFAULT_TIMETABLE = {
+    IT: [
+        { day: 'Monday', slots: ['Data Structures', 'DBMS', 'Computer Networks', 'Software Engineering', 'DBMS Lab'] },
+        { day: 'Tuesday', slots: ['Operating Systems', 'TOC', 'Aptitude', 'AI Basics', 'Web Tech Lab'] },
+    ],
+    CS: [
+        { day: 'Monday', slots: ['Algorithms', 'Discrete Math', 'Compiler Design', 'Machine Learning', 'Algorithms Lab'] },
+        { day: 'Tuesday', slots: ['Comp Architecture', 'DB Systems', 'Stats', 'Cloud Computing', 'ML Lab'] },
+    ],
+    ENTC: [
+        { day: 'Monday', slots: ['Signals', 'Analog Comm', 'Network Theory', 'Digital Electronics', 'Comm Lab'] },
+        { day: 'Tuesday', slots: ['Microcontrollers', 'Control Systems', 'Electromagnetics', 'Embedded Systems', 'Embedded Lab'] },
+    ]
+};
+
 const MODULES = {
     schedule: {
         title: 'Academic Schedule',
@@ -83,8 +98,29 @@ function getUserContext() {
     };
 }
 
+function formatDisplayDate(dateValue, createdAt) {
+    const candidate = dateValue || createdAt;
+    if (!candidate) return '';
+    const parsed = new Date(candidate);
+    if (Number.isNaN(parsed.getTime())) return String(candidate);
+    return parsed.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function escapeHtml(text) {
+    return String(text || '').replace(/[&<>"']/g, (m) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    }[m]));
+}
+
 function renderScheduleTable() {
-    const tableData = getStore(TIMETABLE_KEY, {});
+    let tableData = getStore(TIMETABLE_KEY, null);
+    if (!tableData || Object.keys(tableData).length === 0) {
+        tableData = DEFAULT_TIMETABLE;
+    }
     const list = document.getElementById('featureItems');
     const { role, department } = getUserContext();
 
@@ -148,14 +184,34 @@ function renderEvents() {
         ? saved.filter(e => !e.audience || e.audience === 'all' || e.audience === department)
         : saved;
 
-    const items = filtered.length ? filtered : MODULES.events.items;
+    const dynamicItems = filtered
+        .slice()
+        .sort((a, b) => new Date(b.createdAt || b.date || 0) - new Date(a.createdAt || a.date || 0));
+    const items = dynamicItems.length ? dynamicItems : MODULES.events.items;
+
+    if (!items.length) {
+        list.innerHTML = '<div class="item empty-item"><h4>No events available</h4><p>Faculty/admin has not posted any events yet.</p></div>';
+        return;
+    }
 
     list.innerHTML = items.map((item) => {
-        const title = item.title || 'Event';
-        const text = item.description
-            ? `${item.date || ''} ${item.venue || ''} - ${item.description}`
-            : item.text;
-        return `<div class="item"><h4>${title}</h4><p>${text || ''}</p></div>`;
+        const title = escapeHtml(item.title || 'Event');
+        const desc = escapeHtml(item.description || item.text || '');
+        const displayDate = formatDisplayDate(item.date, item.createdAt);
+        const dateSpan = displayDate ? `<span class="event-meta-item">📅 ${displayDate}</span>` : '';
+        const timeSpan = (item.time && item.time !== '--') ? `<span class="event-meta-item">⏰ ${escapeHtml(item.time)}</span>` : '';
+        const venueSpan = item.venue ? `<span class="event-meta-item">📍 ${escapeHtml(item.venue)}</span>` : '';
+        const audienceSpan = item.audience ? `<span class="event-meta-item">👥 ${escapeHtml(item.audience === 'all' ? 'All' : item.audience)}</span>` : '';
+        
+        return `
+        <div class="event-card item">
+            <h4>${title}</h4>
+            <p>${desc}</p>
+            ${(dateSpan || timeSpan || venueSpan || audienceSpan) ? `
+            <div class="event-meta">
+                ${dateSpan}${timeSpan}${venueSpan}${audienceSpan}
+            </div>` : ''}
+        </div>`;
     }).join('');
 }
 
@@ -168,12 +224,32 @@ function renderNotifications() {
         ? saved.filter(n => !n.audience || n.audience === 'all' || n.audience === department)
         : saved;
 
-    const items = filtered.length ? filtered : MODULES.notifications.items;
+    const dynamicItems = filtered
+        .slice()
+        .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+    const items = dynamicItems.length ? dynamicItems : MODULES.notifications.items;
+
+    if (!items.length) {
+        list.innerHTML = '<div class="item empty-item"><h4>No notifications available</h4><p>There are no recent announcements.</p></div>';
+        return;
+    }
 
     list.innerHTML = items.map((item) => {
-        const title = item.title || 'Notification';
-        const text = item.message || item.text || '';
-        return `<div class="item notify"><h4>${title}</h4><p>${text}</p></div>`;
+        const title = escapeHtml(item.title || 'Notification');
+        const text = escapeHtml(item.message || item.text || '');
+        const audienceSpan = item.audience ? `<span class="event-meta-item">👥 ${escapeHtml(item.audience === 'all' ? 'All' : item.audience)}</span>` : '';
+        const displayDate = formatDisplayDate('', item.createdAt);
+        const dateSpan = displayDate ? `<span class="event-meta-item">📅 ${displayDate}</span>` : '';
+        
+        return `
+        <div class="event-card item notify">
+            <h4>${title}</h4>
+            <p>${text}</p>
+            ${(audienceSpan || dateSpan) ? `
+            <div class="event-meta" style="margin-top: 10px;">
+                ${dateSpan}${audienceSpan}
+            </div>` : ''}
+        </div>`;
     }).join('');
 }
 
@@ -259,6 +335,13 @@ document.addEventListener('DOMContentLoaded', () => {
     tickClock();
     setInterval(tickClock, 1000);
 
+    window.addEventListener('hashchange', () => {
+        const nextKey = getModuleKey();
+        renderModule(nextKey);
+        const search = document.getElementById('featureSearch');
+        if (search) search.value = '';
+    });
+
     const logoutBtn = document.getElementById('logoutBtnFeature');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
@@ -270,4 +353,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // React to changes from Teacher/Admin tabs automatically!
+    window.addEventListener('storage', (e) => {
+        if (['campusEventsStore', 'campusNotificationsStore', 'campusTimetableStore'].includes(e.key)) {
+            const currentModule = getModuleKey();
+            renderModule(currentModule);
+        }
+    });
 });
