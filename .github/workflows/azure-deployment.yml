@@ -59,6 +59,7 @@ jobs:
       uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+        auth-type: CREDENTIALS_JSON
 
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v3
